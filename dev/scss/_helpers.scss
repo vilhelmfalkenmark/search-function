@@ -1,0 +1,41 @@
+// Justify content vertically and horizontally
+.flex-center
+{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+// Clear floats
+.clear
+{
+  clear: both;
+}
+
+// Center content
+.center
+{
+  margin: 0 auto;
+  text-align: center;
+}
+
+.hgt-200
+{
+  height: 200px;
+}
+.red-bg
+{
+background-color: $red;
+}
+.blue-bg
+{
+  background-color: $blue;
+}
+.green-bg
+{
+  background-color: $green;
+}
+.purple-bg
+{
+  background-color: $purple;
+}

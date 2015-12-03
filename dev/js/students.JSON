@@ -1,0 +1,75 @@
+[
+  {
+    "firstName": "Ville",
+    "lastName": "Falkenmark",
+    "address": "Körsbärsvägen 8",
+    "postalNumber": "114 23",
+    "city": "Stockholm",
+    "phoneNumber": "0705580198",
+    "man": true
+  },
+  {
+    "firstName": "Sara",
+    "lastName": "Andersson",
+    "address": "Risvägen 23",
+    "postalNumber": "133 76",
+    "city": "Täby",
+    "phoneNumber": "0773929373",
+    "man": false
+  },
+  {
+    "firstName": "Hanna",
+    "lastName": "Larsson",
+    "address": "ST Eriksgatan 118",
+    "postalNumber": "112 44",
+    "city": "Stockholm",
+    "phoneNumber": "0708178749",
+    "man": false
+  },
+  {
+    "firstName": "Lasse",
+    "lastName": "Nilsson",
+    "address": "Riddarvägen 34",
+    "postalNumber": "412 24",
+    "city": "Örby",
+    "phoneNumber": "0708736381",
+    "man": true
+  },
+  {
+    "firstName": "Pelle",
+    "lastName": "Karlsson",
+    "address": "Åvägen 34",
+    "postalNumber": "412 24",
+    "city": "Fruängen",
+    "phoneNumber": "0708820381",
+    "man": false
+  },
+
+  {
+    "firstName": "Charles",
+    "lastName": "Dickens",
+    "address": "Åsögatan 34",
+    "postalNumber": "212 24",
+    "city": "Uppsala",
+    "phoneNumber": "0706383891",
+    "man": true
+  },
+  {
+    "firstName": "Ina",
+    "lastName": "Hertzel",
+    "address": "Nygatan 1",
+    "postalNumber": "873 89",
+    "city": "Sundsvall",
+    "phoneNumber": "0458-471947",
+    "man": false
+  },
+  {
+    "firstName": "Mikael",
+    "lastName": "Andersson",
+    "address": "Någonstans 1",
+    "postalNumber": "124 73",
+    "city": "Skogås",
+    "phoneNumber": "0458-666837",
+    "man": true
+  }
+]
