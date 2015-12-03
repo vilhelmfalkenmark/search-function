@@ -64,14 +64,14 @@ xmlhttp.onreadystatechange = function() {
         {
             var hits = "träffar";
             var hitIndex = [];
+
+
             var inputSmall = document.getElementsByClassName("input")[0].value;
             searchResContainer.innerHTML = "";
             var foundHits = 0;
-            console.log(inputSmall);
+           // console.log(inputSmall);
             //inputSmall = inputSmall.replace(/\s/g, '');
             inputSmall = inputSmall.toLowerCase();
-
-
             for (var j = 0; j<studArr.length;j++)
             {
                 if(studArr[j].indexOf(inputSmall) >= 0 && inputSmall != "")
@@ -97,6 +97,16 @@ xmlhttp.onreadystatechange = function() {
                 foundHits++;
                 searchResContainer.appendChild(searchResult);
             }
+
+
+
+
+
+
+
+
+
+
             searchStatus.innerHTML = "Din sökning gav "+foundHits+" "+hits;
             var searchResults = document.getElementsByClassName("search-result");
            // console.log(searchResults);
@@ -109,6 +119,49 @@ xmlhttp.onreadystatechange = function() {
                 searchResults[h].innerHTML = searchResults[h].innerHTML.toLowerCase().replace(regex, spanStart+inputSmall+spanEnd);
             }
         }
+
+
+        var highLightCounter = -1; // Räknaren som håller koll på vilken av sökresultaten som vi tabbar mellan.
+        console.log(highLightCounter);
+
+        document.onkeydown = checkKey;
+
+        function checkKey(e) {
+
+            e = e || window.event;
+
+            if (e.keyCode == '38')
+            {
+                if(highLightCounter>-1)
+                {
+                    highLightCounter--;
+
+                }
+
+            }
+            else if (e.keyCode == '40')
+            {
+                highLightCounter++;
+            }
+            console.log(highLightCounter);
+            highLightSearch();
+        }
+
+        var allSearches = document.getElementsByClassName("search-result");
+
+
+        function highLightSearch()
+        {
+            for(var n=0;n<allSearches.length;n++)
+            {
+                allSearches[n].className = "search-result";
+            }
+
+
+            allSearches[highLightCounter].className = "search-result search-result-active";
+        }
+
+
     }
 };
 xmlhttp.open("GET", url, true);

@@ -44,13 +44,30 @@ article
     width: 101%;
   }
 }
+.search-container
+{
+  position: relative;
+  background-color: white;
+
+}
 .search-result-container
 {
+  width: 100%;
+  background-color: white;
+  position: absolute;
+
   div
   {
     padding: 10px 0 15px 0;
   }
 }
+.search-result-active
+{
+  background-color: yellow;
+}
+
+
+
 h3
 {
   padding: 0;
