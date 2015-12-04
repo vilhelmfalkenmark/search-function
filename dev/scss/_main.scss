@@ -1,9 +1,8 @@
 body
 {
   color: #424242;
-  font-family: Helvetica Neue, Helvetica, Arial;
-  *
-  {
+  font-family: 'Playfair Display', serif;
+  * {
     outline: none;
   }
 }
@@ -22,14 +21,30 @@ article
   max-width: 680px;
 }
 
+.underline
+{
+  text-decoration: underline;
+}
+
+.background-container
+{
+  width: 100%;
+  height: 600px;
+  background: url(../images/mountains.jpeg) center center no-repeat fixed;
+  background-size: cover;
+  @extend .flex-center
+}
+
 
 
 .search-container
 {
-  width: 70%;
+  width: 90%;
   max-width: 560px;
   margin: 0 auto;
-
+  background-color: rgba(255,255,255,0.5);
+  padding: 10px 80px 30px 80px;
+//  overflow-y: scroll;
   input
   {
     display: block;
@@ -42,31 +57,47 @@ article
     display: block;
     height: 40px;
     width: 101%;
+    background-color: $offWhite;
+    border: 1px solid $darkGrey;
   }
 }
 .search-container
 {
   position: relative;
-  background-color: white;
-
+  h1
+  {
+    font-size: 40px;
+    padding: 20px;
+  }
 }
 .search-result-container
 {
-  width: 100%;
-  background-color: white;
+  margin: 0 auto;
+ // width: 100%;
+  max-width: 100%;
+  left: 0;
+  right: 0;
+  background-color: $offWhite;
   position: absolute;
-
-  div
+  overflow-y: scroll;
+ .search-result
   {
-    padding: 10px 0 15px 0;
+   border-bottom: 1px dashed $darkGrey;
+   padding: 30px 80px;
+
+   &:hover
+   {
+     @extend .search-result-active;
+   }
+
+
   }
 }
 .search-result-active
 {
-  background-color: yellow;
+  background-color: $darkGrey;
+  color: $offWhite;
 }
-
-
 
 h3
 {
@@ -89,8 +120,70 @@ h3
 .search-result
 {
   text-transform: capitalize;
+}
+.adress-container
+{
+  .gtr-row
+  {
+    background-color: $offWhite;
+
+  }
 
 }
+
+
+
+.pop-up-container
+{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  background-color: rgba(0,0,0,0.6);
+  display: none;
+  .pop-up-container-inner
+  {
+    margin: 10% auto 0 auto; //
+    width: 30%;
+    padding: 30px;
+    background-color: $offWhite;
+
+  }
+
+  .pop-up-address-container
+  {
+
+    text-transform: capitalize;
+
+  }
+
+
+
+  .close-pop-up
+  {
+    background-color: $darkGrey;
+    color: $offWhite;
+    cursor: pointer;
+    width: 140px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    &:hover
+    {
+      background-color: black;
+    }
+
+
+  }
+
+  .highlight
+  {
+    color: inherit;
+    background-color: inherit;
+  }
+
+}
+
 
 
 
