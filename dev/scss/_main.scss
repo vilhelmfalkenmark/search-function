@@ -87,10 +87,8 @@ article
 
    &:hover
    {
-     @extend .search-result-active;
+     cursor: pointer;
    }
-
-
   }
 }
 .search-result-active
@@ -98,6 +96,7 @@ article
   background-color: $darkGrey;
   color: $offWhite;
 }
+
 
 h3
 {

@@ -4,6 +4,8 @@
 var container = document.getElementsByClassName("adress-container")[0];
 var popUpContainer = document.getElementsByClassName("pop-up-container")[0];
 var popUpContainerInner = document.getElementsByClassName("pop-up-container-inner")[0];
+var highLightCounter = -1; // Räknaren som håller koll på vilken av sökresultaten som vi tabbar mellan.
+
 var row = document.createElement("div");
 row.className = "gtr-row";
 var studArr = [];
@@ -48,15 +50,12 @@ xmlhttp.onreadystatechange = function() {
 
         for(var i=0;i<studArr.length;i++)
         {
-           // studArr[i] = studArr[i].replace(/\s/g, '');
             studArr[i] = studArr[i].toLowerCase();
         }
-       // console.log(studArr);
-        /*  START SEARCH  */
         var searchBtn = document.getElementsByClassName("btn")[0];
         var searchResContainer = document.getElementsByClassName("search-result-container")[0];
 
-        searchBtn.addEventListener("click",findAddress);
+       // searchBtn.addEventListener("click",findAddress);
         var searchStatus = document.getElementsByTagName("h3")[0];
 
         var input2 = document.getElementsByClassName("input")[0];
@@ -70,8 +69,7 @@ xmlhttp.onreadystatechange = function() {
             var inputSmall = document.getElementsByClassName("input")[0].value;
             searchResContainer.innerHTML = "";
             var foundHits = 0;
-           // console.log(inputSmall);
-            //inputSmall = inputSmall.replace(/\s/g, '');
+
             inputSmall = inputSmall.toLowerCase();
             for (var j = 0; j<studArr.length;j++)
             {
@@ -100,6 +98,7 @@ xmlhttp.onreadystatechange = function() {
             }
             searchStatus.innerHTML = "Din sökning på <span class='underline'>"+input2.value+"</span> gav "+foundHits+" "+hits;
             var searchResults = document.getElementsByClassName("search-result");
+
             var spanStart = "<span class='highlight'>";
             var spanEnd = "</span>";
             var regex = new RegExp(inputSmall,"g");
@@ -107,23 +106,32 @@ xmlhttp.onreadystatechange = function() {
             for(var h = 0; h<searchResults.length;h++)
             {
                 searchResults[h].innerHTML = searchResults[h].innerHTML.toLowerCase().replace(regex, spanStart+inputSmall+spanEnd);
-                searchResults[h].addEventListener("click",hoverHighlight)
-
+                searchResults[h].addEventListener("mouseover",hoverHighlight/*(/!*searchResults.indexOf(searchResults[h].innerHTML)*!/h),false*/)
+                searchResults[h].addEventListener("mouseleave",removeHoverHighlight)
             }
-
-
             function hoverHighlight()
             {
-                console.log(this);
+                for(var p = 0;p<searchResults.length;p++)
+                {
+                    if(searchResults[p].innerHTML == this.innerHTML)
+                    {
+                        highLightCounter = p;
+                        searchResults[p].className="search-result search-result-active";
+                        document.getElementsByClassName("search-result-active")[0].addEventListener("click",popUpAddress);
+                    }
+                }
             }
-
-
-
-
+            function removeHoverHighlight()
+            {
+                for(var p = 0;p<searchResults.length;p++)
+                {
+                        searchResults[p].className="search-result"
+                }
+            }
         }
-        var highLightCounter = -1; // Räknaren som håller koll på vilken av sökresultaten som vi tabbar mellan.
-        var allSearches = document.getElementsByClassName("search-result");
 
+        var allSearches = document.getElementsByClassName("search-result");
+        console.log(highLightCounter);
         document.onkeydown = checkKey;
 
         function checkKey(e) {
@@ -156,6 +164,11 @@ xmlhttp.onreadystatechange = function() {
             console.log(highLightCounter);
             highLightSearch();
         }
+
+
+
+
+
         function highLightSearch()
         {
             for(var n=0;n<allSearches.length;n++)
@@ -185,14 +198,9 @@ xmlhttp.onreadystatechange = function() {
         });
         document.getElementsByTagName("body")[0].addEventListener("click",function(){
             document.getElementsByTagName("input")[0].value = "";
-         //   document.getElementsByClassName("search-result-container")[0].innerHTML = "";
+            document.getElementsByClassName("search-result-container")[0].innerHTML = "";
             searchStatus.innerHTML = "&nbsp;";
         });
-
-
-
-
-
 
     }
 };
