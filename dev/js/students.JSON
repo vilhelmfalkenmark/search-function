@@ -7,6 +7,7 @@
     "city": "Stockholm",
     "phoneNumber": "0705580198",
     "favoriteMovie":"Blow",
+    "face":"face.png",
     "man": true
   },
   {
@@ -17,16 +18,18 @@
     "city": "Täby",
     "phoneNumber": "0773929373",
     "favoriteMovie":"Maffia",
+    "face":"face.png",
     "man": false
   },
   {
     "firstName": "Hanna",
     "lastName": "Larsson",
-    "address": "ST Eriksgatan 118",
+    "address": "St Eriksgatan 118",
     "postalNumber": "112 44",
     "city": "Stockholm",
     "phoneNumber": "0708178749",
     "favoriteMovie":"Grisen Willburr",
+    "face":"face.png",
     "man": false
   },
   {
@@ -37,6 +40,7 @@
     "city": "Örby",
     "phoneNumber": "0708736381",
     "favoriteMovie":"Strul",
+    "face":"face.png",
     "man": true
   },
   {
@@ -47,6 +51,7 @@
     "city": "Fruängen",
     "phoneNumber": "0708820381",
     "favoriteMovie":"Lost in Translation",
+    "face":"face.png",
     "man": false
   },
 
@@ -58,6 +63,7 @@
     "city": "Uppsala",
     "phoneNumber": "0706383891",
     "favoriteMovie":"The Hobbit",
+    "face":"face.png",
     "man": true
   },
   {
@@ -68,16 +74,18 @@
     "city": "Sundsvall",
     "phoneNumber": "0458-471947",
     "favoriteMovie":"Terminator",
+    "face":"face.png",
     "man": false
   },
   {
-    "firstName": "Mikael",
+    "firstName": "Kar-Mikael",
     "lastName": "Andersson",
     "address": "Någonstans 1",
     "postalNumber": "124 73",
     "city": "Skogås",
     "phoneNumber": "0458-666837",
     "favoriteMovie":"Blade",
+    "face":"face.png",
     "man": true
   },
   {
@@ -88,6 +96,51 @@
     "city": "Mörby Centrum",
     "favoriteMovie":"Sex and The City",
     "phoneNumber": "0458-666837",
+    "face":"face.png",
     "man": true
+  },
+  {
+    "firstName": "Jessica",
+    "lastName": "Majlund",
+    "address": "Ålgatan 1",
+    "postalNumber": "732 12",
+    "city": "Nynäshamn",
+    "favoriteMovie":"Catz",
+    "phoneNumber": "031-3847189",
+    "face":"face.png",
+    "man": false
+  },
+  {
+  "firstName": "Thomas",
+  "lastName": "Skoog",
+  "address": "Täbygatan",
+  "postalNumber": "168 98",
+  "city": "Täby",
+  "favoriteMovie":"Motorsågsmassakern",
+  "phoneNumber": "0736-3972612",
+  "face":"face.png",
+  "man": false
+},
+  {
+    "firstName": "Nina",
+    "lastName": "Ståhl",
+    "address": "Ormvägen 32",
+    "postalNumber": "364 87",
+    "city": "Bråvalla",
+    "favoriteMovie":"Vendetta",
+    "phoneNumber": "0709-323613",
+    "face":"face.png",
+    "man": false
+  },
+  {
+    "firstName": "Hasse",
+    "lastName": "Jansson",
+    "address": "Franz Rugters Gata 23",
+    "postalNumber": "137 39",
+    "city": "Saltsjö-Boo",
+    "favoriteMovie":"Predator",
+    "phoneNumber": "0763-123428",
+    "face":"face.png",
+    "man": false
   }
 ]

@@ -29,38 +29,68 @@ article
 .background-container
 {
   width: 100%;
-  height: 600px;
-  background: url(../images/mountains.jpeg) center center no-repeat fixed;
+  background: url(../images/nature.jpg) center center no-repeat fixed;
   background-size: cover;
   @extend .flex-center
 }
 
-
-
 .search-container
 {
-  width: 90%;
-  max-width: 560px;
   margin: 0 auto;
-  background-color: rgba(255,255,255,0.5);
-  padding: 10px 80px 30px 80px;
-//  overflow-y: scroll;
+  background-color: rgba(255,255,255,0.7);
   input
   {
     display: block;
-    width: 100%;
     height: 40px;
-  }
-  button
-  {
-    margin-top: 20px;
-    display: block;
-    height: 40px;
-    width: 101%;
-    background-color: $offWhite;
-    border: 1px solid $darkGrey;
   }
 }
+
+@media(min-width: 1px) and (max-width: $mobile-large-break)
+{
+  .background-container
+  {
+    height: 400px;
+  }
+
+
+  .search-container
+  {
+    width: 90%;
+    max-width: 560px;
+    input
+    {
+      width: 90%;
+      margin: 0 auto;
+    }
+    h3
+    {
+      text-align: center;
+    }
+  }
+}
+@media (min-width: $mobile-large-break+1)
+{
+  .background-container
+  {
+    height: 700px;
+  }
+
+  .search-container
+  {
+    width: 50%;
+    max-width: 560px;
+    padding: 10px 80px 30px 80px;
+
+    input
+    {
+      width: 100%;
+    }
+  }
+}
+
+
+
+
 .search-container
 {
   position: relative;
@@ -73,16 +103,15 @@ article
 .search-result-container
 {
   margin: 0 auto;
- // width: 100%;
+  z-index: 999;
   max-width: 100%;
   left: 0;
   right: 0;
-  background-color: $offWhite;
+  background-color: white;
   position: absolute;
-  overflow-y: scroll;
  .search-result
   {
-   border-bottom: 1px dashed $darkGrey;
+   border-bottom: 1px solid $darkGrey;
    padding: 30px 80px;
 
    &:hover
@@ -96,41 +125,23 @@ article
   background-color: $darkGrey;
   color: $offWhite;
 }
-
-
 h3
 {
   padding: 0;
 }
-.girl
-{
-  background-color: $red;
-}
-.boy
-{
-  background-color: $blue;
-}
+
 
 .highlight
 {
   color: white;
   background-color: $red;
 }
+
+
 .search-result
 {
   text-transform: capitalize;
 }
-.adress-container
-{
-  .gtr-row
-  {
-    background-color: $offWhite;
-
-  }
-
-}
-
-
 
 .pop-up-container
 {
@@ -142,8 +153,9 @@ h3
   display: none;
   .pop-up-container-inner
   {
-    margin: 10% auto 0 auto; //
-    width: 30%;
+    margin: 15% auto 0 auto; //
+    width: 50%;
+    max-width: 350px;
     padding: 30px;
     background-color: $offWhite;
 
@@ -155,8 +167,6 @@ h3
     text-transform: capitalize;
 
   }
-
-
 
   .close-pop-up
   {
@@ -171,8 +181,6 @@ h3
     {
       background-color: black;
     }
-
-
   }
 
   .highlight
@@ -182,16 +190,3 @@ h3
   }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

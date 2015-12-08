@@ -17,4 +17,10 @@
       @content;
     }
   }
+  @else if $breakpoint == "not-desktop" {
+    @media (min-width: 1px) and (max-width: $tablet-break) {
+      @content;
+    }
+  }
+
 }

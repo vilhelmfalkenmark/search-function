@@ -1,0 +1,110 @@
+.girl
+{
+.face-container
+{
+  border: 2px solid $red;
+}
+
+}
+.boy
+{
+  .face-container
+  {
+    border: 2px solid $green;
+  }
+}
+.boy, .girl
+{
+  background-color: $offWhite;
+
+  position: relative;
+  color: $darkGrey;
+  box-shadow: -11px 13px 20px -14px rgba(0,0,0,0.75);
+}
+
+
+
+.adress-container
+{
+  .gtr-row
+  {
+    background-color: white;//$offWhite;
+  }
+
+}
+
+$faceSize: 130px;
+.face-container
+{
+  background-size: cover;
+  background-position: center center;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: $faceSize;
+  height: $faceSize;
+  border-radius: 50%;
+  background-color: white;
+}
+
+
+
+@include respond-to(not-desktop) {
+.adress-text-container
+{
+  font-size: 14px;
+
+  width: auto;
+  margin: 0 auto;
+  padding: 150px 20px 30px 20px;
+
+}
+.card-container
+{
+  @extend .flex-center;
+
+}
+
+
+  .face-container
+  {
+    top: 10px;
+    right: 0;
+    left: 0;
+    margin: 0 auto;
+    border-radius: 50%;
+  }
+}
+
+
+
+@include respond-to(desktop) {
+  .adress-text-container
+  {
+    font-size: 16px;
+    padding: 150px 20% 30px 0;
+  }
+
+  .face-container
+  {
+    top: 10px;
+    right: 10px;
+    border-radius: 50%;
+  }
+}
+.icon
+{
+  line-height: 25px;
+  font-size: 20px;
+  margin:30px 15px 0 0;
+  color: darken(grey,10%);
+}
+.placeholder-icon
+{
+  color: $offWhite;
+}
+.all-info-link
+{
+  padding: 50px 0 0 0;
+  cursor: pointer;
+}

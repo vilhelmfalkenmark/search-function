@@ -16,27 +16,41 @@ xmlhttp.onreadystatechange = function() {
     if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
     {
         var students = JSON.parse(xmlhttp.responseText);
+
+        var imagePath = "images/student-faces/";
+
         for(var student in students)
         {
             var gtrDiv = document.createElement("div");
             gtrDiv.className = "gtr col-3-desk col-4-tab col-6-ml col-12-ms";
-            var centerDiv = document.createElement("div");
+            var cardContainer = document.createElement("div");
+
             if(students[student].man == true)
             {
-                centerDiv.className = "flex-center boy";
+                cardContainer.className = "boy card-container";
             }
             else
             {
-                centerDiv.className = "flex-center girl";
+                cardContainer.className = "girl card-container";
             }
-            centerDiv.innerHTML = students[student].firstName+" ";
-            centerDiv.innerHTML += students[student].lastName+"<br> ";
-            centerDiv.innerHTML += students[student].address+"<br> ";
-            centerDiv.innerHTML += students[student].postalNumber+"<br> ";
-            centerDiv.innerHTML += students[student].city+"<br> ";
-            centerDiv.innerHTML += "Favoritfilm "+students[student].favoriteMovie+"<br> ";
-            centerDiv.innerHTML += "Tel "+students[student].phoneNumber+"<br> ";
-            gtrDiv.appendChild(centerDiv);
+            var faceContainer = document.createElement("div");
+            faceContainer.className = "face-container";
+            //faceContainer.style.backgroundImage = "url(images/nature.jpg)";
+            faceContainer.style.backgroundImage = "url(images/students/"+students[student].face+")";
+            var adressTextContainer = document.createElement("div");
+            adressTextContainer.className = "adress-text-container";
+            adressTextContainer.innerHTML = "<i class='icon flaticon-id17'></i>"+students[student].firstName+" ";
+            adressTextContainer.innerHTML += students[student].lastName+"<br> ";
+            adressTextContainer.innerHTML += "<i class='icon flaticon-pin71'></i>"+students[student].address+"<br> ";
+            adressTextContainer.innerHTML += "<i class='icon placeholder-icon flaticon-pin71'></i>"+students[student].postalNumber+"<br> ";
+            adressTextContainer.innerHTML += "<i class='icon placeholder-icon flaticon-pin71'></i>"+students[student].city+"<br> ";
+            //adressTextContainer.innerHTML += "Favoritfilm "+students[student].favoriteMovie+"<br> ";
+            adressTextContainer.innerHTML += "<i class='icon flaticon-iphone26'></i>"+students[student].phoneNumber+"<br> ";
+            adressTextContainer.innerHTML += "<div class='all-info-link'>Fullständig information</div>";
+
+            cardContainer.appendChild(faceContainer);
+            cardContainer.appendChild(adressTextContainer);
+            gtrDiv.appendChild(cardContainer);
             row.appendChild(gtrDiv);
             //  studArr.push(students[student].firstName+students[student].lastName+students[student].address+students[student].postalNumber+students[student].city+students[student].phoneNumber);
             var concatenatedProps = "";
@@ -52,15 +66,12 @@ xmlhttp.onreadystatechange = function() {
         {
             studArr[i] = studArr[i].toLowerCase();
         }
-        var searchBtn = document.getElementsByClassName("btn")[0];
         var searchResContainer = document.getElementsByClassName("search-result-container")[0];
-
        // searchBtn.addEventListener("click",findAddress);
         var searchStatus = document.getElementsByTagName("h3")[0];
 
         var input2 = document.getElementsByClassName("input")[0];
         input2.addEventListener("input",findAddress);
-
         function findAddress()
         {
             var hits = "träffar";
@@ -96,16 +107,17 @@ xmlhttp.onreadystatechange = function() {
                 foundHits++;
                 searchResContainer.appendChild(searchResult);
             }
-            searchStatus.innerHTML = "Din sökning på <span class='underline'>"+input2.value+"</span> gav "+foundHits+" "+hits;
+            searchStatus.innerHTML = "Din sökning på <span class='underline'>"+input2.value+"</span> gav "+foundHits+" "+hits+".";
             var searchResults = document.getElementsByClassName("search-result");
-
-            var spanStart = "<span class='highlight'>";
-            var spanEnd = "</span>";
+            var highlightStart = "<span class='highlight'>";
+            var highlightEnd = "</span>";
             var regex = new RegExp(inputSmall,"g");
-
-            for(var h = 0; h<searchResults.length;h++)
-            {
-                searchResults[h].innerHTML = searchResults[h].innerHTML.toLowerCase().replace(regex, spanStart+inputSmall+spanEnd);
+              for(var h = 0; h<searchResults.length;h++)
+              {
+                if((inputSmall != "br") && (inputSmall != "b") && (inputSmall != "r") )   // Förhindra att br taggarna skivs ut.
+                {
+                  searchResults[h].innerHTML = searchResults[h].innerHTML.toLowerCase().replace(regex, highlightStart+inputSmall+highlightEnd);
+                }
                 searchResults[h].addEventListener("mouseover",hoverHighlight/*(/!*searchResults.indexOf(searchResults[h].innerHTML)*!/h),false*/)
                 searchResults[h].addEventListener("mouseleave",removeHoverHighlight)
             }
@@ -129,14 +141,12 @@ xmlhttp.onreadystatechange = function() {
                 }
             }
         }
-
         var allSearches = document.getElementsByClassName("search-result");
-        console.log(highLightCounter);
+       // console.log(highLightCounter);
         document.onkeydown = checkKey;
-
         function checkKey(e) {
             var numberOfHits = allSearches.length;
-            console.log(numberOfHits+" Träffar!");
+            //console.log(numberOfHits+" Träffar!");
 
             e = e || window.event;
 
@@ -161,14 +171,8 @@ xmlhttp.onreadystatechange = function() {
                     popUpAddress();
                 }
             }
-            console.log(highLightCounter);
             highLightSearch();
         }
-
-
-
-
-
         function highLightSearch()
         {
             for(var n=0;n<allSearches.length;n++)
@@ -201,14 +205,8 @@ xmlhttp.onreadystatechange = function() {
             document.getElementsByClassName("search-result-container")[0].innerHTML = "";
             searchStatus.innerHTML = "&nbsp;";
         });
-
     }
 };
 xmlhttp.open("GET", url, true);
 xmlhttp.send();
 container.appendChild(row);
-
-
-
-
-
