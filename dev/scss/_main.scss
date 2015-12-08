@@ -153,6 +153,10 @@ h3
   z-index: 9999;
   background-color: rgba(0,0,0,0.6);
   display: none;
+  transition: opacity 0.35s ease-in-out;
+  opacity: 0;
+
+
   .pop-up-container-inner
   {
     margin: 15% auto 0 auto; //
@@ -160,25 +164,15 @@ h3
     max-width: 350px;
     padding: 80px;
     background-color: $offWhite;
-    transition: opacity 0.35s ease-in-out;
-    opacity: 0;
   }
-  .fade-in
-  {
-    opacity: 1;
-  }
-
 
   .pop-up-address-container
   {
-
     text-transform: capitalize;
-
   }
-
   .close-pop-up
   {
-    background-color: $darkGrey;
+    background-color: $red;
     color: $offWhite;
     cursor: pointer;
     width: 140px;
@@ -187,7 +181,7 @@ h3
     transition: all 0.3s ease;
     &:hover
     {
-      background-color: black;
+      background-color: $green;
     }
   }
 

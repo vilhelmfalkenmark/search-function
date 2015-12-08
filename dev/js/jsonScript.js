@@ -190,13 +190,22 @@ xmlhttp.onreadystatechange = function() {
           setTimeout(function(){popUpContainerInner.style.opacity=1}, 20);
 
           popUpContainer.style.display = "block";
+          setTimeout(function(){popUpContainer.style.opacity=1}, 20);
+
         }
       }
     }
     document.getElementsByClassName("close-pop-up")[0].addEventListener("click", function() {
-      popUpContainer.style.display = "none";
-      popUpContainerInner.innerHTML = "";
-      popUpContainerInner.style.opacity=0;
+      setTimeout(function(){popUpContainer.style.opacity=0}, 20);
+      setTimeout(function(){
+        popUpContainer.style.display = "none";
+        popUpContainerInner.innerHTML = "";
+
+      }, 200);
+
+    //  popUpContainer.style.display = "none";
+
+    //  popUpContainerInner.style.opacity=0;
     });
     document.getElementsByTagName("body")[0].addEventListener("click", function() {
       document.getElementsByTagName("input")[0].value = "";
