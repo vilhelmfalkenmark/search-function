@@ -7,7 +7,7 @@
     "city": "Stockholm",
     "phoneNumber": "0705580198",
     "favoriteMovie":"Blow",
-    "face":"face.png",
+    "face":"dude1.jpg",
     "man": true
   },
   {
@@ -18,7 +18,7 @@
     "city": "Täby",
     "phoneNumber": "0773929373",
     "favoriteMovie":"Maffia",
-    "face":"face.png",
+    "face":"girl1.jpg",
     "man": false
   },
   {
@@ -29,7 +29,7 @@
     "city": "Stockholm",
     "phoneNumber": "0708178749",
     "favoriteMovie":"Grisen Willburr",
-    "face":"face.png",
+    "face":"girl2.jpg",
     "man": false
   },
   {
@@ -40,7 +40,7 @@
     "city": "Örby",
     "phoneNumber": "0708736381",
     "favoriteMovie":"Strul",
-    "face":"face.png",
+    "face":"dude1.jpg",
     "man": true
   },
   {
@@ -51,7 +51,7 @@
     "city": "Fruängen",
     "phoneNumber": "0708820381",
     "favoriteMovie":"Lost in Translation",
-    "face":"face.png",
+    "face":"dude4.jpg",
     "man": false
   },
 
@@ -63,7 +63,7 @@
     "city": "Uppsala",
     "phoneNumber": "0706383891",
     "favoriteMovie":"The Hobbit",
-    "face":"face.png",
+    "face":"dude3.jpg",
     "man": true
   },
   {
@@ -74,29 +74,18 @@
     "city": "Sundsvall",
     "phoneNumber": "0458-471947",
     "favoriteMovie":"Terminator",
-    "face":"face.png",
+    "face":"girl2.jpg",
     "man": false
   },
   {
-    "firstName": "Kar-Mikael",
+    "firstName": "Karl-Mikael",
     "lastName": "Andersson",
     "address": "Någonstans 1",
     "postalNumber": "124 73",
     "city": "Skogås",
     "phoneNumber": "0458-666837",
     "favoriteMovie":"Blade",
-    "face":"face.png",
-    "man": true
-  },
-  {
-    "firstName": "Thomas",
-    "lastName": "Andersson",
-    "address": "Vägen 1",
-    "postalNumber": "124 73",
-    "city": "Mörby Centrum",
-    "favoriteMovie":"Sex and The City",
-    "phoneNumber": "0458-666837",
-    "face":"face.png",
+    "face":"dude4.jpg",
     "man": true
   },
   {
@@ -107,7 +96,7 @@
     "city": "Nynäshamn",
     "favoriteMovie":"Catz",
     "phoneNumber": "031-3847189",
-    "face":"face.png",
+    "face":"girl3.jpg",
     "man": false
   },
   {
@@ -118,7 +107,7 @@
   "city": "Täby",
   "favoriteMovie":"Motorsågsmassakern",
   "phoneNumber": "0736-3972612",
-  "face":"face.png",
+  "face":"dude2.jpg",
   "man": false
 },
   {
@@ -129,7 +118,7 @@
     "city": "Bråvalla",
     "favoriteMovie":"Vendetta",
     "phoneNumber": "0709-323613",
-    "face":"face.png",
+    "face":"girl3.jpg",
     "man": false
   },
   {
@@ -140,7 +129,18 @@
     "city": "Saltsjö-Boo",
     "favoriteMovie":"Predator",
     "phoneNumber": "0763-123428",
-    "face":"face.png",
+    "face":"dude5.jpg",
+    "man": false
+  },
+  {
+    "firstName": "Johanna",
+    "lastName": "Olsson",
+    "address": "Torstenssonsgatan 12",
+    "postalNumber": "114 56",
+    "city": "Östermalm",
+    "favoriteMovie":"Världarnas Krig",
+    "phoneNumber": "0708-179638",
+    "face":"girl2.jpg",
     "man": false
   }
 ]

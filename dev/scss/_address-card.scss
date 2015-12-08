@@ -1,41 +1,40 @@
-.girl
-{
-.face-container
-{
-  border: 2px solid $red;
-}
 
-}
-.boy
-{
-  .face-container
-  {
-    border: 2px solid $green;
-  }
-}
-.boy, .girl
-{
-  background-color: $offWhite;
-
-  position: relative;
-  color: $darkGrey;
-  box-shadow: -11px 13px 20px -14px rgba(0,0,0,0.75);
-}
+$cardBackground: $offWhite;
+$addressContainerBackground: white;
+$addressTextColor: $darkGrey;
 
 
 
 .adress-container
 {
-  .gtr-row
-  {
-    background-color: white;//$offWhite;
-  }
-
+  background-color: $addressContainerBackground;
+  //color: $addressTextColor;
 }
 
-$faceSize: 130px;
-.face-container
-{
+.girl {
+  .face-container {
+    //  border: 2px solid $red;
+  }
+}
+.boy {
+  .face-container {
+    //  border: 2px solid $green;
+  }
+}
+.boy,
+.girl {
+  background-color: $cardBackground;
+  position: relative;
+  color: $addressTextColor;
+  box-shadow: -11px 13px 20px -14px rgba(0,0,0,0.75);
+}
+.adress-container {
+  .gtr-row {
+    background-color: $addressContainerBackground; //$offWhite;
+  }
+}
+$faceSize: 145px;
+.face-container {
   background-size: cover;
   background-position: center center;
   position: absolute;
@@ -47,27 +46,17 @@ $faceSize: 130px;
   background-color: white;
 }
 
-
-
 @include respond-to(not-desktop) {
-.adress-text-container
-{
-  font-size: 14px;
-
-  width: auto;
-  margin: 0 auto;
-  padding: 150px 20px 30px 20px;
-
-}
-.card-container
-{
-  @extend .flex-center;
-
-}
-
-
-  .face-container
-  {
+  .adress-text-container {
+    font-size: 14px;
+    width: auto;
+    margin: 0 auto;
+    padding: 160px 20px 30px;
+  }
+  .card-container {
+    @extend .flex-center;
+  }
+  .face-container {
     top: 10px;
     right: 0;
     left: 0;
@@ -75,36 +64,40 @@ $faceSize: 130px;
     border-radius: 50%;
   }
 }
-
-
-
 @include respond-to(desktop) {
-  .adress-text-container
-  {
-    font-size: 16px;
-    padding: 150px 20% 30px 0;
-  }
 
-  .face-container
-  {
+  // .card-container:before
+  // {
+  //   background-image: url("../images/clip.png");
+  //   width: 50px;
+  //     content: " ";
+  //     position: absolute;
+  //    left: 160px;
+  //    top: -66px;
+  //    height:57px;
+  // }
+
+  .adress-text-container {
+    font-size: 16px;
+    padding: 160px 20% 30px 0;
+  }
+  .face-container {
     top: 10px;
     right: 10px;
     border-radius: 50%;
   }
 }
-.icon
-{
+.icon {
   line-height: 25px;
   font-size: 20px;
-  margin:30px 15px 0 0;
-  color: darken(grey,10%);
+  margin: 30px 15px 0 0;
+//  color: darken(grey,10%);
+  color: $addressTextColor;
 }
-.placeholder-icon
-{
-  color: $offWhite;
+.placeholder-icon {
+  color: $cardBackground;
 }
-.all-info-link
-{
-  padding: 50px 0 0 0;
+.all-info-link {
+  padding: 50px 0 0;
   cursor: pointer;
 }

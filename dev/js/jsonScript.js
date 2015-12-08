@@ -13,199 +13,174 @@ var xmlhttp = new XMLHttpRequest();
 var url = "js/students.JSON";
 
 xmlhttp.onreadystatechange = function() {
-    if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
-    {
-        var students = JSON.parse(xmlhttp.responseText);
+  if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+    var students = JSON.parse(xmlhttp.responseText);
 
-        var imagePath = "images/student-faces/";
+    var imagePath = "images/student-faces/";
 
-        for(var student in students)
-        {
-            var gtrDiv = document.createElement("div");
-            gtrDiv.className = "gtr col-3-desk col-4-tab col-6-ml col-12-ms";
-            var cardContainer = document.createElement("div");
+    for (var student in students) {
+      var gtrDiv = document.createElement("div");
+      gtrDiv.className = "gtr col-3-desk col-4-tab col-6-ml col-12-ms";
+      var cardContainer = document.createElement("div");
 
-            if(students[student].man == true)
-            {
-                cardContainer.className = "boy card-container";
-            }
-            else
-            {
-                cardContainer.className = "girl card-container";
-            }
-            var faceContainer = document.createElement("div");
-            faceContainer.className = "face-container";
-            //faceContainer.style.backgroundImage = "url(images/nature.jpg)";
-            faceContainer.style.backgroundImage = "url(images/students/"+students[student].face+")";
-            var adressTextContainer = document.createElement("div");
-            adressTextContainer.className = "adress-text-container";
-            adressTextContainer.innerHTML = "<i class='icon flaticon-id17'></i>"+students[student].firstName+" ";
-            adressTextContainer.innerHTML += students[student].lastName+"<br> ";
-            adressTextContainer.innerHTML += "<i class='icon flaticon-pin71'></i>"+students[student].address+"<br> ";
-            adressTextContainer.innerHTML += "<i class='icon placeholder-icon flaticon-pin71'></i>"+students[student].postalNumber+"<br> ";
-            adressTextContainer.innerHTML += "<i class='icon placeholder-icon flaticon-pin71'></i>"+students[student].city+"<br> ";
-            //adressTextContainer.innerHTML += "Favoritfilm "+students[student].favoriteMovie+"<br> ";
-            adressTextContainer.innerHTML += "<i class='icon flaticon-iphone26'></i>"+students[student].phoneNumber+"<br> ";
-            adressTextContainer.innerHTML += "<div class='all-info-link'>Fullständig information</div>";
+      if (students[student].man == true) {
+        cardContainer.className = "boy card-container";
+      } else {
+        cardContainer.className = "girl card-container";
+      }
+      var faceContainer = document.createElement("div");
+      faceContainer.className = "face-container";
+      //faceContainer.style.backgroundImage = "url(images/nature.jpg)";
+      faceContainer.style.backgroundImage = "url(images/students/" + students[student].face + ")";
+      var adressTextContainer = document.createElement("div");
+      adressTextContainer.className = "adress-text-container";
+      adressTextContainer.innerHTML = "<i class='icon flaticon-id17'></i>" + students[student].firstName + " ";
+      adressTextContainer.innerHTML += students[student].lastName + "<br> ";
+      adressTextContainer.innerHTML += "<i class='icon flaticon-pin71'></i>" + students[student].address + "<br> ";
+      adressTextContainer.innerHTML += "<i class='icon placeholder-icon flaticon-pin71'></i>" + students[student].postalNumber + "<br> ";
+      adressTextContainer.innerHTML += "<i class='icon placeholder-icon flaticon-pin71'></i>" + students[student].city + "<br> ";
+      //adressTextContainer.innerHTML += "Favoritfilm "+students[student].favoriteMovie+"<br> ";
+      adressTextContainer.innerHTML += "<i class='icon flaticon-iphone26'></i>" + students[student].phoneNumber + "<br> ";
+      adressTextContainer.innerHTML += "<div class='all-info-link'>Fullständig information</div>";
 
-            cardContainer.appendChild(faceContainer);
-            cardContainer.appendChild(adressTextContainer);
-            gtrDiv.appendChild(cardContainer);
-            row.appendChild(gtrDiv);
-            //  studArr.push(students[student].firstName+students[student].lastName+students[student].address+students[student].postalNumber+students[student].city+students[student].phoneNumber);
-            var concatenatedProps = "";
-            for(var props in students[student])
-            {
-                concatenatedProps = concatenatedProps+students[student][props]+" ";
+      cardContainer.appendChild(faceContainer);
+      cardContainer.appendChild(adressTextContainer);
+      gtrDiv.appendChild(cardContainer);
+      row.appendChild(gtrDiv);
+      //  studArr.push(students[student].firstName+students[student].lastName+students[student].address+students[student].postalNumber+students[student].city+students[student].phoneNumber);
+      var concatenatedProps = "";
+      for (var props in students[student]) {
+        concatenatedProps = concatenatedProps + students[student][props] + " ";
 
-            }
-            studArr.push(concatenatedProps);
-        }
-
-        for(var i=0;i<studArr.length;i++)
-        {
-            studArr[i] = studArr[i].toLowerCase();
-        }
-        var searchResContainer = document.getElementsByClassName("search-result-container")[0];
-       // searchBtn.addEventListener("click",findAddress);
-        var searchStatus = document.getElementsByTagName("h3")[0];
-
-        var input2 = document.getElementsByClassName("input")[0];
-        input2.addEventListener("input",findAddress);
-        function findAddress()
-        {
-            var hits = "träffar";
-            var hitIndex = [];
-
-            var inputSmall = document.getElementsByClassName("input")[0].value;
-            searchResContainer.innerHTML = "";
-            var foundHits = 0;
-
-            inputSmall = inputSmall.toLowerCase();
-            for (var j = 0; j<studArr.length;j++)
-            {
-                if(studArr[j].indexOf(inputSmall) >= 0 && inputSmall != "")
-                {
-                    hitIndex.push(j);
-                }
-            }
-            if(hitIndex.length == 1)
-            {
-                hits = "träff"
-            }
-            for (var k = 0;k<hitIndex.length;k++)
-            {
-                var searchResult = document.createElement("div");
-                searchResult.className = "search-result";
-                searchResult.innerHTML = students[hitIndex[k]].firstName+ " ";
-                searchResult.innerHTML += students[hitIndex[k]].lastName+"<br>";
-                searchResult.innerHTML += students[hitIndex[k]].address+"<br>";
-                searchResult.innerHTML += students[hitIndex[k]].postalNumber+"<br>";
-                searchResult.innerHTML += students[hitIndex[k]].city+"<br>";
-                searchResult.innerHTML += students[hitIndex[k]].favoriteMovie+"<br>";
-                searchResult.innerHTML += students[hitIndex[k]].phoneNumber+"<br>";
-                foundHits++;
-                searchResContainer.appendChild(searchResult);
-            }
-            searchStatus.innerHTML = "Din sökning på <span class='underline'>"+input2.value+"</span> gav "+foundHits+" "+hits+".";
-            var searchResults = document.getElementsByClassName("search-result");
-            var highlightStart = "<span class='highlight'>";
-            var highlightEnd = "</span>";
-            var regex = new RegExp(inputSmall,"g");
-              for(var h = 0; h<searchResults.length;h++)
-              {
-                if((inputSmall != "br") && (inputSmall != "b") && (inputSmall != "r") )   // Förhindra att br taggarna skivs ut.
-                {
-                  searchResults[h].innerHTML = searchResults[h].innerHTML.toLowerCase().replace(regex, highlightStart+inputSmall+highlightEnd);
-                }
-                searchResults[h].addEventListener("mouseover",hoverHighlight/*(/!*searchResults.indexOf(searchResults[h].innerHTML)*!/h),false*/)
-                searchResults[h].addEventListener("mouseleave",removeHoverHighlight)
-            }
-            function hoverHighlight()
-            {
-                for(var p = 0;p<searchResults.length;p++)
-                {
-                    if(searchResults[p].innerHTML == this.innerHTML)
-                    {
-                        highLightCounter = p;
-                        searchResults[p].className="search-result search-result-active";
-                        document.getElementsByClassName("search-result-active")[0].addEventListener("click",popUpAddress);
-                    }
-                }
-            }
-            function removeHoverHighlight()
-            {
-                for(var p = 0;p<searchResults.length;p++)
-                {
-                        searchResults[p].className="search-result"
-                }
-            }
-        }
-        var allSearches = document.getElementsByClassName("search-result");
-       // console.log(highLightCounter);
-        document.onkeydown = checkKey;
-        function checkKey(e) {
-            var numberOfHits = allSearches.length;
-            //console.log(numberOfHits+" Träffar!");
-
-            e = e || window.event;
-
-            if (e.keyCode == '38')
-            {
-                if(highLightCounter>=-1)
-                {
-                    highLightCounter--;
-                }
-            }
-            else if (e.keyCode == '40')
-            {
-                if(highLightCounter<numberOfHits-1)
-                {
-                    highLightCounter++;
-                }
-            }
-            else if (e.keyCode == '13') //Enter
-            {
-                if(popUpContainer.style.display != "block")
-                {
-                    popUpAddress();
-                }
-            }
-            highLightSearch();
-        }
-        function highLightSearch()
-        {
-            for(var n=0;n<allSearches.length;n++)
-            {
-                allSearches[n].className = "search-result";
-            }
-            allSearches[highLightCounter].className = "search-result search-result-active";
-        }
-        function popUpAddress()
-        {
-             for(var popUp = 0;popUp<allSearches.length;popUp++)
-             {
-                 if(allSearches[popUp].className == "search-result search-result-active")
-                 {
-                        var popUpAddressContainer = document.createElement("div");
-                        popUpAddressContainer.className = "pop-up-address-container";
-                        popUpAddressContainer.innerHTML = allSearches[popUp].innerHTML;
-                        popUpContainerInner.appendChild(popUpAddressContainer);
-                        popUpContainer.style.display = "block";
-                 }
-             }
-        }
-        document.getElementsByClassName("close-pop-up")[0].addEventListener("click",function()
-        {
-            popUpContainer.style.display = "none";
-            popUpContainerInner.innerHTML = "";
-        });
-        document.getElementsByTagName("body")[0].addEventListener("click",function(){
-            document.getElementsByTagName("input")[0].value = "";
-            document.getElementsByClassName("search-result-container")[0].innerHTML = "";
-            searchStatus.innerHTML = "&nbsp;";
-        });
+      }
+      studArr.push(concatenatedProps);
     }
+
+    for (var i = 0; i < studArr.length; i++) {
+      studArr[i] = studArr[i].toLowerCase();
+    }
+    var searchResContainer = document.getElementsByClassName("search-result-container")[0];
+    // searchBtn.addEventListener("click",findAddress);
+    var searchStatus = document.getElementsByTagName("h3")[0];
+
+    var input2 = document.getElementsByClassName("input")[0];
+    input2.addEventListener("input", findAddress);
+
+    function findAddress() {
+      var hits = "träffar";
+      var hitIndex = [];
+
+      var inputSmall = document.getElementsByClassName("input")[0].value;
+      searchResContainer.innerHTML = "";
+      var foundHits = 0;
+
+      inputSmall = inputSmall.toLowerCase();
+      for (var j = 0; j < studArr.length; j++) {
+        if (studArr[j].indexOf(inputSmall) >= 0 && inputSmall != "") {
+          hitIndex.push(j);
+        }
+      }
+      if (hitIndex.length == 1) {
+        hits = "träff"
+      }
+      for (var k = 0; k < hitIndex.length; k++) {
+        var searchResult = document.createElement("div");
+        searchResult.className = "search-result";
+        searchResult.innerHTML = students[hitIndex[k]].firstName + " ";
+        searchResult.innerHTML += students[hitIndex[k]].lastName + "<br>";
+        searchResult.innerHTML += students[hitIndex[k]].address + "<br>";
+        searchResult.innerHTML += students[hitIndex[k]].postalNumber + "<br>";
+        searchResult.innerHTML += students[hitIndex[k]].city + "<br>";
+      //  searchResult.innerHTML += students[hitIndex[k]].favoriteMovie + "<br>";
+        searchResult.innerHTML += students[hitIndex[k]].phoneNumber + "<br>";
+        foundHits++;
+        searchResContainer.appendChild(searchResult);
+      }
+      searchStatus.innerHTML = "Din sökning på <span class='underline'>" + input2.value + "</span> gav " + foundHits + " " + hits + ".";
+      var searchResults = document.getElementsByClassName("search-result");
+      var highlightStart = "<span class='highlight'>";
+      var highlightEnd = "</span>";
+      var regex = new RegExp(inputSmall, "g");
+      for (var h = 0; h < searchResults.length; h++) {
+        if ((inputSmall != "br") && (inputSmall != "b") && (inputSmall != "r")) // Förhindra att br taggarna skivs ut.
+        {
+          searchResults[h].innerHTML = searchResults[h].innerHTML.toLowerCase().replace(regex, highlightStart + inputSmall + highlightEnd);
+        }
+        searchResults[h].addEventListener("mouseover", hoverHighlight /*(/!*searchResults.indexOf(searchResults[h].innerHTML)*!/h),false*/ )
+        searchResults[h].addEventListener("mouseleave", removeHoverHighlight)
+      }
+
+      function hoverHighlight() {
+        for (var p = 0; p < searchResults.length; p++) {
+          if (searchResults[p].innerHTML == this.innerHTML) {
+            highLightCounter = p;
+            searchResults[p].className = "search-result search-result-active";
+            document.getElementsByClassName("search-result-active")[0].addEventListener("click", popUpAddress);
+          }
+        }
+      }
+
+      function removeHoverHighlight() {
+        for (var p = 0; p < searchResults.length; p++) {
+          searchResults[p].className = "search-result"
+        }
+      }
+    }
+    var allSearches = document.getElementsByClassName("search-result");
+    // console.log(highLightCounter);
+    document.onkeydown = checkKey;
+
+    function checkKey(e) {
+      var numberOfHits = allSearches.length;
+      //console.log(numberOfHits+" Träffar!");
+
+      e = e || window.event;
+
+      if (e.keyCode == '38') {
+        if (highLightCounter >= -1) {
+          highLightCounter--;
+        }
+      } else if (e.keyCode == '40') {
+        if (highLightCounter < numberOfHits - 1) {
+          highLightCounter++;
+        }
+      } else if (e.keyCode == '13') //Enter
+      {
+        if (popUpContainer.style.display != "block") {
+          popUpAddress();
+        }
+      }
+      highLightSearch();
+    }
+
+    function highLightSearch() {
+      for (var n = 0; n < allSearches.length; n++) {
+        allSearches[n].className = "search-result";
+      }
+      allSearches[highLightCounter].className = "search-result search-result-active";
+    }
+
+    function popUpAddress() {
+      for (var popUp = 0; popUp < allSearches.length; popUp++) {
+        if (allSearches[popUp].className == "search-result search-result-active") {
+          var popUpAddressContainer = document.createElement("div");
+          popUpAddressContainer.className = "pop-up-address-container";
+          popUpAddressContainer.innerHTML = allSearches[popUp].innerHTML;
+          popUpContainerInner.appendChild(popUpAddressContainer);
+          popUpContainer.style.display = "block";
+        }
+      }
+    }
+    document.getElementsByClassName("close-pop-up")[0].addEventListener("click", function() {
+      popUpContainer.style.display = "none";
+      popUpContainerInner.innerHTML = "";
+    });
+    document.getElementsByTagName("body")[0].addEventListener("click", function() {
+      document.getElementsByTagName("input")[0].value = "";
+      document.getElementsByClassName("search-result-container")[0].innerHTML = "";
+      searchStatus.innerHTML = "&nbsp;";
+    });
+  }
 };
 xmlhttp.open("GET", url, true);
 xmlhttp.send();
