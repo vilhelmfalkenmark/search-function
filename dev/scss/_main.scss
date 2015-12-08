@@ -143,6 +143,7 @@ h3
   text-transform: capitalize;
 }
 
+
 .pop-up-container
 {
 
@@ -157,10 +158,16 @@ h3
     margin: 15% auto 0 auto; //
     width: 50%;
     max-width: 350px;
-    padding: 30px;
+    padding: 80px;
     background-color: $offWhite;
-
+    transition: opacity 0.35s ease-in-out;
+    opacity: 0;
   }
+  .fade-in
+  {
+    opacity: 1;
+  }
+
 
   .pop-up-address-container
   {

@@ -5,6 +5,7 @@ var container = document.getElementsByClassName("adress-container")[0];
 var popUpContainer = document.getElementsByClassName("pop-up-container")[0];
 var popUpContainerInner = document.getElementsByClassName("pop-up-container-inner")[0];
 var highLightCounter = -1; // Räknaren som håller koll på vilken av sökresultaten som vi tabbar mellan.
+var resultHeader = document.getElementsByName("result-header")[0];
 
 var row = document.createElement("div");
 row.className = "gtr-row";
@@ -91,8 +92,10 @@ xmlhttp.onreadystatechange = function() {
         searchResult.innerHTML += students[hitIndex[k]].address + "<br>";
         searchResult.innerHTML += students[hitIndex[k]].postalNumber + "<br>";
         searchResult.innerHTML += students[hitIndex[k]].city + "<br>";
-      //  searchResult.innerHTML += students[hitIndex[k]].favoriteMovie + "<br>";
         searchResult.innerHTML += students[hitIndex[k]].phoneNumber + "<br>";
+        // searchResult.innerHTML += "<div class='hidden-info'>"+students[hitIndex[k]].favoriteMovie + "<br>";
+        // searchResult.innerHTML +=  students[hitIndex[k]].favoriteMovie + "<br></div>";
+
         foundHits++;
         searchResContainer.appendChild(searchResult);
       }
@@ -164,9 +167,28 @@ xmlhttp.onreadystatechange = function() {
       for (var popUp = 0; popUp < allSearches.length; popUp++) {
         if (allSearches[popUp].className == "search-result search-result-active") {
           var popUpAddressContainer = document.createElement("div");
+          var popUpHeader = document.createElement("h4");
+
+          popUpHeader.innerHTML = "Din sökning på '"+document.getElementsByTagName("input")[0].value+"' gav dig följande träff";
+
           popUpAddressContainer.className = "pop-up-address-container";
-          popUpAddressContainer.innerHTML = allSearches[popUp].innerHTML;
+        //  popUpAddressContainer.innerHTML = allSearches[popUp].innerHTML;
+
+          popUpAddressContainer.innerHTML = "<i class='icon flaticon-id17'></i>" + students[popUp].firstName + " ";
+          popUpAddressContainer.innerHTML += students[popUp].lastName + "<br> ";
+          popUpAddressContainer.innerHTML += "<i class='icon flaticon-pin71'></i>" + students[popUp].address + "<br> ";
+          popUpAddressContainer.innerHTML += "<i class='icon placeholder-icon flaticon-pin71'></i>" + students[popUp].postalNumber + "<br> ";
+          popUpAddressContainer.innerHTML += "<i class='icon placeholder-icon flaticon-pin71'></i>" + students[popUp].city + "<br> ";
+          //adressTextContainer.innerHTML += "Favoritfilm "+students[student].favoriteMovie+"<br> ";
+          popUpAddressContainer.innerHTML += "<i class='icon flaticon-iphone26'></i>" + students[popUp].phoneNumber + "<br> ";
+          popUpAddressContainer.innerHTML += "<i class='icon placeholder-icon flaticon-iphone26'></i>" +students[popUp].favoriteMovie+"<br>"; // Släng in alla hemligheter här!
+          popUpAddressContainer.innerHTML += "<i class='icon placeholder-icon flaticon-iphone26'></i>" +students[popUp].man; // Släng in alla hemligheter här
+          popUpContainerInner.appendChild(popUpHeader);
           popUpContainerInner.appendChild(popUpAddressContainer);
+
+        //  setTimeout(popUpContainerInner.className = "pop-up-container-inner fade-in", 2800);
+          setTimeout(function(){popUpContainerInner.style.opacity=1}, 20);
+
           popUpContainer.style.display = "block";
         }
       }
@@ -174,6 +196,7 @@ xmlhttp.onreadystatechange = function() {
     document.getElementsByClassName("close-pop-up")[0].addEventListener("click", function() {
       popUpContainer.style.display = "none";
       popUpContainerInner.innerHTML = "";
+      popUpContainerInner.style.opacity=0;
     });
     document.getElementsByTagName("body")[0].addEventListener("click", function() {
       document.getElementsByTagName("input")[0].value = "";
