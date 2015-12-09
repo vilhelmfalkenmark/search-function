@@ -51,10 +51,10 @@ $faceSize: 145px;
     font-size: 14px;
     width: auto;
     margin: 0 auto;
-    padding: 160px 20px 30px;
+    padding: 160px 20px 30px 30px;
   }
   .card-container {
-    @extend .flex-center;
+  //  @extend .flex-center;
   }
   .face-container {
     top: 10px;
@@ -68,7 +68,7 @@ $faceSize: 145px;
 
   .adress-text-container {
     font-size: 16px;
-    padding: 160px 20% 30px 0;
+    padding: 160px 0 30px 10%;
   }
   .face-container {
     top: 10px;

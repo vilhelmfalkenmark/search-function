@@ -156,19 +156,28 @@ h3
   transition: opacity 0.35s ease-in-out;
   opacity: 0;
 
-
+.pop-up-face-container
+{
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  background-color: $green;
+  position: absolute;
+  top: -100px;
+  background-size: cover;
+}
   .pop-up-container-inner
   {
-    margin: 15% auto 0 auto; //
-    width: 50%;
+  //  margin-top: 5%;
+    position: relative;
+    margin: 70px auto 0 auto; //
+    width: 60%;
     max-width: 350px;
-    padding: 80px;
+    padding: 100px 80px 80px 80px;
     background-color: $offWhite;
-  }
-
-  .pop-up-address-container
-  {
-    text-transform: capitalize;
   }
   .close-pop-up
   {
@@ -181,7 +190,7 @@ h3
     transition: all 0.3s ease;
     &:hover
     {
-      background-color: $green;
+      background-color: darken($red,10%);
     }
   }
 
