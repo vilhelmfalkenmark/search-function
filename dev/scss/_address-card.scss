@@ -1,5 +1,6 @@
 
 $cardBackground: $offWhite;
+//$cardBackground: $red;
 $addressContainerBackground: white;
 $addressTextColor: $darkGrey;
 
@@ -63,6 +64,12 @@ $faceSize: 145px;
     margin: 0 auto;
     border-radius: 50%;
   }
+  .all-info-link {
+    margin: 20px 10px 0 0;
+  }
+
+
+
 }
 @include respond-to(desktop) {
 
@@ -75,6 +82,10 @@ $faceSize: 145px;
     right: 10px;
     border-radius: 50%;
   }
+  .all-info-link {
+    margin: 20px 12% 0 0;
+  }
+
 }
 .icon {
   line-height: 25px;
@@ -87,6 +98,20 @@ $faceSize: 145px;
   color: $cardBackground;
 }
 .all-info-link {
-  padding: 50px 0 0;
+  padding: 15px 5px;
   cursor: pointer;
+  background-color: $darkGrey;
+  text-align: center;
+  color: $offWhite;
+  transition: all 0.4s ease;
+
+  &:hover
+  {
+    background-color: lighten($darkGrey,20%);
+
+    //border: 1px solid $darkGrey;
+
+  }
+
+
 }

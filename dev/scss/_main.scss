@@ -29,7 +29,8 @@ article
 .background-container
 {
   width: 100%;
-  background: url(../images/nature.jpg) center center no-repeat fixed;
+  background: url(../images/bear.jpg) center center no-repeat fixed;
+ //background-color: $green;
   background-size: cover;
   @extend .flex-center
 }
@@ -38,11 +39,51 @@ article
 {
   margin: 0 auto;
   background-color: rgba(255,255,255,0.7);
+  position: relative;
+
   input
   {
     display: block;
     height: 40px;
   }
+
+
+@include respond-to(phone-device) {
+  h1
+  {
+    font-size: 24px;
+    padding: 10px;
+    margin: 10px 0 0 0;
+  }
+
+
+.search-icon
+{
+  font-size: 20px;
+}
+
+
+}
+@include respond-to(large-device) {
+  h1
+  {
+    font-size: 40px;
+    padding: 10px;
+    margin: 10px 0 0 0;
+  }
+
+
+.search-icon
+{
+  font-size: 34px;
+}
+
+
+}
+
+
+
+
 }
 
 @media(min-width: 1px) and (max-width: $mobile-large-break)
@@ -51,12 +92,11 @@ article
   {
     height: 400px;
   }
-
-
   .search-container
   {
     width: 90%;
     max-width: 560px;
+
     input
     {
       width: 90%;
@@ -72,7 +112,7 @@ article
 {
   .background-container
   {
-    height: 700px;
+    height: 550px;
   }
 
   .search-container
@@ -88,20 +128,10 @@ article
   }
 }
 
-
-
-
-.search-container
-{
-  position: relative;
-  h1
-  {
-    font-size: 40px;
-    padding: 20px;
-  }
-}
 .search-result-container
 {
+//  border: 1px solid $darkGrey;
+
   margin: 0 auto;
   z-index: 999;
   max-width: 100%;
@@ -111,7 +141,9 @@ article
   position: absolute;
  .search-result
   {
-   border-bottom: 1px solid $darkGrey;
+   background-color: $offWhite;
+   border-bottom: 1px dotted $darkGrey;
+   //margin: 10px 0;
    padding: 30px 80px;
 
    &:hover
@@ -122,7 +154,7 @@ article
 }
 .search-result-active
 {
-  background-color: $darkGrey;
+  background-color: $darkGrey !important;
   color: $offWhite;
 }
 h3
@@ -141,63 +173,4 @@ h3
 .search-result
 {
   text-transform: capitalize;
-}
-
-
-.pop-up-container
-{
-
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  z-index: 9999;
-  background-color: rgba(0,0,0,0.6);
-  display: none;
-  transition: opacity 0.35s ease-in-out;
-  opacity: 0;
-
-.pop-up-face-container
-{
-  margin: 0 auto;
-  left: 0;
-  right: 0;
-  height: 200px;
-  width: 200px;
-  border-radius: 50%;
-  background-color: $green;
-  position: absolute;
-  top: -100px;
-  background-size: cover;
-}
-  .pop-up-container-inner
-  {
-  //  margin-top: 5%;
-    position: relative;
-    margin: 70px auto 0 auto; //
-    width: 60%;
-    max-width: 350px;
-    padding: 100px 80px 80px 80px;
-    background-color: $offWhite;
-  }
-  .close-pop-up
-  {
-    background-color: $red;
-    color: $offWhite;
-    cursor: pointer;
-    width: 140px;
-    padding: 20px;
-    text-align: center;
-    transition: all 0.3s ease;
-    &:hover
-    {
-      background-color: darken($red,10%);
-    }
-  }
-
-  .highlight
-  {
-    color: inherit;
-    background-color: inherit;
-  }
-
 }

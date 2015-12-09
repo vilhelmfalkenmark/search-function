@@ -1,0 +1,87 @@
+.pop-up-container
+{
+
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background-color: rgba(0,0,0,0.6);
+  display: none;
+  transition: opacity 0.35s ease-in-out;
+  opacity: 0;
+
+
+  .pop-up-face-container
+  {
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    border-radius: 50%;
+    position: absolute;
+    background-size: cover;
+  }
+  .pop-up-container-inner
+  {
+    position: relative;
+    background-color: $offWhite;
+  }
+
+
+@include respond-to(phone-device) {
+  .pop-up-face-container
+  {
+    height: 140px;
+    width: 140px;
+    top: -70px;
+  }
+
+  .pop-up-container-inner
+  {
+    margin: 100px auto 0 auto; //
+    width: 80%;
+    max-width: 500px;
+    padding: 80px 20px 30px 20px;
+  }
+
+
+}
+@include respond-to(large-device) {
+  .pop-up-face-container
+  {
+    height: 200px;
+    width: 200px;
+    top: -100px;
+  }
+  .pop-up-container-inner
+  {
+    margin: 120px auto 0 auto; //
+    width: 90%;
+    max-width: 500px;
+    padding: 100px 40px 80px 40px;
+  }
+}
+
+
+
+  .close-pop-up
+  {
+    background-color: $red;
+    color: $offWhite;
+    cursor: pointer;
+    width: 140px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    &:hover
+    {
+      background-color: darken($red,10%);
+    }
+  }
+
+  .highlight
+  {
+    color: inherit;
+    background-color: inherit;
+  }
+
+}

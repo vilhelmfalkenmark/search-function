@@ -49,37 +49,29 @@ xmlhttp.onreadystatechange = function() {
       cardContainer.appendChild(adressTextContainer);
       gtrDiv.appendChild(cardContainer);
       row.appendChild(gtrDiv);
-      studArr.push(students[student].firstName+students[student].lastName+students[student].address+students[student].postalNumber+students[student].city+students[student].phoneNumber);
+      // Anledningen till mellanslaget nedan är så att man kan söka på både för och efternamn och få en highlight.
+      studArr.push(students[student].firstName + " " + students[student].lastName + students[student].address + students[student].postalNumber + students[student].city + students[student].phoneNumber);
+      console.log(studArr)
     }
-
     /* FULLSTÄNDIG INFORMATION KNAPP POP-UP FUNKTIONALITET */
-
     var allInfoLink = document.getElementsByClassName("all-info-link");
-    for(var a = 0;a<allInfoLink.length;a++)
-    {
-      allInfoLink[a].addEventListener("click",linkPopUp,false)
+    for (var a = 0; a < allInfoLink.length; a++) {
+      allInfoLink[a].addEventListener("click", linkPopUp, false)
     }
-    function linkPopUp()
-    {
-      for(var l=0;l<allInfoLink.length;l++)
-      {
-          if(allInfoLink[l] == this)
-          {
-            popUpIndex = l;
-            popUpAddress();
-          }
+
+    function linkPopUp() {
+      for (var l = 0; l < allInfoLink.length; l++) {
+        if (allInfoLink[l] == this) {
+          popUpIndex = l;
+          popUpAddress();
+        }
       }
     }
-
-
-
     for (var i = 0; i < studArr.length; i++) {
       studArr[i] = studArr[i].toLowerCase();
     }
     var searchResContainer = document.getElementsByClassName("search-result-container")[0];
-    // searchBtn.addEventListener("click",findAddress);
     var searchStatus = document.getElementsByTagName("h3")[0];
-
     var input2 = document.getElementsByClassName("input")[0];
     input2.addEventListener("input", findAddress);
 
@@ -102,8 +94,9 @@ xmlhttp.onreadystatechange = function() {
       for (var k = 0; k < hitIndex.length; k++) {
         var searchResult = document.createElement("div");
         searchResult.className = "search-result";
-        searchResult.innerHTML = students[hitIndex[k]].firstName + " ";
-        searchResult.innerHTML += students[hitIndex[k]].lastName + "<br>";
+        // searchResult.innerHTML = "<br>";
+        searchResult.innerHTML = students[hitIndex[k]].firstName + " " + students[hitIndex[k]].lastName + "<br>";
+        //  searchResult.innerHTML += ;
         searchResult.innerHTML += students[hitIndex[k]].address + "<br>";
         searchResult.innerHTML += students[hitIndex[k]].postalNumber + "<br>";
         searchResult.innerHTML += students[hitIndex[k]].city + "<br>";
@@ -115,35 +108,27 @@ xmlhttp.onreadystatechange = function() {
       var searchResults = document.getElementsByClassName("search-result");
       var highlightStart = "<span class='highlight'>";
       var highlightEnd = "</span>";
-      //  /\<[^>]*\>/ig
-
       var regex = new RegExp(inputSmall, "g");
-  //    regex = /\<[^>]*\>/ig
-
       for (var h = 0; h < searchResults.length; h++) {
         if ((inputSmall != "br") && (inputSmall != "b") && (inputSmall != "r")) // Förhindra att br taggarna skivs ut.
         {
           searchResults[h].innerHTML = searchResults[h].innerHTML.toLowerCase().replace(regex, highlightStart + inputSmall + highlightEnd);
         }
-        searchResults[h].addEventListener("mouseover", hoverHighlight /*(/!*searchResults.indexOf(searchResults[h].innerHTML)*!/h),false*/ )
+        searchResults[h].addEventListener("mouseover", hoverHighlight)
         searchResults[h].addEventListener("mouseleave", removeHoverHighlight)
       }
 
-      function hoverHighlight()
-       {
+      function hoverHighlight() {
         for (var p = 0, l = searchResults.length; p < l; p++) {
 
-          if (searchResults[p].innerHTML == this.innerHTML)
-          {
+          if (searchResults[p].innerHTML == this.innerHTML) {
             searchResults[p].className = "search-result search-result-active";
-            for(var index in students)
-            {
-              if(searchResults[p].innerHTML.includes(students[index].phoneNumber))
-              {
+            for (var index in students) {
+              if (searchResults[p].innerHTML.includes(students[index].phoneNumber)) {
                 popUpIndex = index;
               }
             }
-          document.getElementsByClassName("search-result-active")[0].addEventListener("click", popUpAddress);
+            document.getElementsByClassName("search-result-active")[0].addEventListener("click", popUpAddress);
           }
         }
       }
@@ -188,36 +173,40 @@ xmlhttp.onreadystatechange = function() {
     }
 
     function popUpAddress() {
-          var popUpAddressContainer = document.createElement("div");
-          var popUpHeader = document.createElement("h4");
+      var popUpAddressContainer = document.createElement("div");
 
-          popUpHeader.innerHTML = "Din sökning på '"+document.getElementsByTagName("input")[0].value+"' gav dig följande träff";
-          popUpAddressContainer.className = "pop-up-address-container";
+      popUpAddressContainer.className = "pop-up-address-container";
+      var popUpFaceContainer = document.createElement("div");
+      popUpFaceContainer.className = "pop-up-face-container";
+      popUpFaceContainer.style.backgroundImage = "url(images/students/" + students[popUpIndex].face + ")";
+      popUpAddressContainer.innerHTML = "<i class='icon flaticon-id17'></i>" + students[popUpIndex].firstName + " ";
+      popUpAddressContainer.innerHTML += students[popUpIndex].lastName + "<br> ";
+      popUpAddressContainer.innerHTML += "<i class='icon flaticon-pin71'></i>" + students[popUpIndex].address + "<br> ";
+      popUpAddressContainer.innerHTML += "<i class='icon placeholder-icon flaticon-pin71'></i>" + students[popUpIndex].postalNumber + "<br> ";
+      popUpAddressContainer.innerHTML += "<i class='icon placeholder-icon flaticon-pin71'></i>" + students[popUpIndex].city + "<br> ";
+      popUpAddressContainer.innerHTML += "<i class='icon flaticon-iphone26'></i>" + students[popUpIndex].phoneNumber + "<br> ";
+      popUpAddressContainer.innerHTML += "<i class='icon flaticon-email5'></i>" + students[popUpIndex].mail + "<br> ";
 
-          var popUpFaceContainer = document.createElement("div");
-          popUpFaceContainer.className = "pop-up-face-container";
-          popUpFaceContainer.style.backgroundImage = "url(images/students/" + students[popUpIndex].face + ")";
-        //  popUpAddressContainer.innerHTML = allSearches[popUp].innerHTML;
-          popUpAddressContainer.innerHTML = "<i class='icon flaticon-id17'></i>" + students[popUpIndex].firstName + " ";
-          popUpAddressContainer.innerHTML += students[popUpIndex].lastName + "<br> ";
-          popUpAddressContainer.innerHTML += "<i class='icon flaticon-pin71'></i>" + students[popUpIndex].address + "<br> ";
-          popUpAddressContainer.innerHTML += "<i class='icon placeholder-icon flaticon-pin71'></i>" + students[popUpIndex].postalNumber + "<br> ";
-          popUpAddressContainer.innerHTML += "<i class='icon placeholder-icon flaticon-pin71'></i>" + students[popUpIndex].city + "<br> ";
-          popUpAddressContainer.innerHTML += "<i class='icon flaticon-iphone26'></i>" + students[popUpIndex].phoneNumber + "<br> ";
-          popUpAddressContainer.innerHTML += "<i class='icon flaticon-email5'></i>" + students[popUpIndex].mail + "<br> ";
-          popUpAddressContainer.innerHTML += "<i class='icon placeholder-icon flaticon-iphone26'></i>" +students[popUpIndex].favoriteMovie+"<br>"; // Släng in alla hemligheter här!
-          popUpAddressContainer.innerHTML += "<i class='icon placeholder-icon flaticon-iphone26'></i>" +students[popUpIndex].quote; // Släng in alla hemligheter här
+      var popUpQouteContainer = document.createElement("p");
+      popUpQouteContainer.innerHTML = "<span class='important-text'>" + students[popUpIndex].firstName + " " + students[popUpIndex].lastName + ":</span>" + " " + students[popUpIndex].quote;
 
-        //  popUpContainerInner.appendChild(popUpHeader);
-          popUpContainerInner.appendChild(popUpFaceContainer);
-          popUpContainerInner.appendChild(popUpAddressContainer);
-          setTimeout(function(){popUpContainerInner.style.opacity=1}, 20);
-          popUpContainer.style.display = "block";
-          setTimeout(function(){popUpContainer.style.opacity=1}, 20);
+      popUpContainerInner.appendChild(popUpFaceContainer);
+      popUpContainerInner.appendChild(popUpAddressContainer);
+      popUpContainerInner.appendChild(popUpQouteContainer);
+
+      setTimeout(function() {
+        popUpContainerInner.style.opacity = 1
+      }, 20);
+      popUpContainer.style.display = "block";
+      setTimeout(function() {
+        popUpContainer.style.opacity = 1
+      }, 20);
     }
     document.getElementsByClassName("close-pop-up")[0].addEventListener("click", function() {
-      setTimeout(function(){popUpContainer.style.opacity=0}, 20);
-      setTimeout(function(){
+      setTimeout(function() {
+        popUpContainer.style.opacity = 0
+      }, 20);
+      setTimeout(function() {
         popUpContainer.style.display = "none";
         popUpContainerInner.innerHTML = "";
       }, 200);

@@ -23,4 +23,14 @@
     }
   }
 
+  @else if $breakpoint == "phone-device" {
+    @media (min-width: 1px) and (max-width: $mobile-large-break) {
+      @content;
+    }
+  }
+  @else if $breakpoint == "large-device" {
+    @media (min-width: $mobile-large-break+1px) {
+      @content;
+    }
+  }
 }
