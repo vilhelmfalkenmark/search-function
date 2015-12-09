@@ -196,10 +196,7 @@ xmlhttp.onreadystatechange = function() {
 
           var popUpFaceContainer = document.createElement("div");
           popUpFaceContainer.className = "pop-up-face-container";
-
-        //  popUpFaceContainer.style.backgroundImage ="";
           popUpFaceContainer.style.backgroundImage = "url(images/students/" + students[popUpIndex].face + ")";
-
         //  popUpAddressContainer.innerHTML = allSearches[popUp].innerHTML;
           popUpAddressContainer.innerHTML = "<i class='icon flaticon-id17'></i>" + students[popUpIndex].firstName + " ";
           popUpAddressContainer.innerHTML += students[popUpIndex].lastName + "<br> ";
@@ -211,13 +208,10 @@ xmlhttp.onreadystatechange = function() {
           popUpAddressContainer.innerHTML += "<i class='icon placeholder-icon flaticon-iphone26'></i>" +students[popUpIndex].favoriteMovie+"<br>"; // Släng in alla hemligheter här!
           popUpAddressContainer.innerHTML += "<i class='icon placeholder-icon flaticon-iphone26'></i>" +students[popUpIndex].quote; // Släng in alla hemligheter här
 
-
-
         //  popUpContainerInner.appendChild(popUpHeader);
           popUpContainerInner.appendChild(popUpFaceContainer);
           popUpContainerInner.appendChild(popUpAddressContainer);
           setTimeout(function(){popUpContainerInner.style.opacity=1}, 20);
-
           popUpContainer.style.display = "block";
           setTimeout(function(){popUpContainer.style.opacity=1}, 20);
     }
@@ -226,7 +220,6 @@ xmlhttp.onreadystatechange = function() {
       setTimeout(function(){
         popUpContainer.style.display = "none";
         popUpContainerInner.innerHTML = "";
-
       }, 200);
     });
     document.getElementsByTagName("body")[0].addEventListener("click", function() {
