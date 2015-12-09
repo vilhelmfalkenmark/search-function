@@ -66,17 +66,6 @@ $faceSize: 145px;
 }
 @include respond-to(desktop) {
 
-  // .card-container:before
-  // {
-  //   background-image: url("../images/clip.png");
-  //   width: 50px;
-  //     content: " ";
-  //     position: absolute;
-  //    left: 160px;
-  //    top: -66px;
-  //    height:57px;
-  // }
-
   .adress-text-container {
     font-size: 16px;
     padding: 160px 20% 30px 0;
@@ -89,10 +78,10 @@ $faceSize: 145px;
 }
 .icon {
   line-height: 25px;
-  font-size: 20px;
+  font-size: 18px;
   margin: 30px 15px 0 0;
-//  color: darken(grey,10%);
-  color: $addressTextColor;
+ color: darken(grey,10%);
+  //color: $addressTextColor;
 }
 .placeholder-icon {
   color: $cardBackground;

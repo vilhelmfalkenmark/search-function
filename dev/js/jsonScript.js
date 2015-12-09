@@ -6,6 +6,7 @@ var popUpContainer = document.getElementsByClassName("pop-up-container")[0];
 var popUpContainerInner = document.getElementsByClassName("pop-up-container-inner")[0];
 var highLightCounter = -1; // Räknaren som håller koll på vilken av sökresultaten som vi tabbar mellan.
 var resultHeader = document.getElementsByName("result-header")[0];
+var popUpIndex;
 
 var row = document.createElement("div");
 row.className = "gtr-row";
@@ -42,20 +43,40 @@ xmlhttp.onreadystatechange = function() {
       adressTextContainer.innerHTML += "<i class='icon placeholder-icon flaticon-pin71'></i>" + students[student].city + "<br> ";
       //adressTextContainer.innerHTML += "Favoritfilm "+students[student].favoriteMovie+"<br> ";
       adressTextContainer.innerHTML += "<i class='icon flaticon-iphone26'></i>" + students[student].phoneNumber + "<br> ";
+      adressTextContainer.innerHTML += "<i class='icon flaticon-email5'></i>" + students[student].mail + "<br> ";
       adressTextContainer.innerHTML += "<div class='all-info-link'>Fullständig information</div>";
-
       cardContainer.appendChild(faceContainer);
       cardContainer.appendChild(adressTextContainer);
       gtrDiv.appendChild(cardContainer);
       row.appendChild(gtrDiv);
-      //  studArr.push(students[student].firstName+students[student].lastName+students[student].address+students[student].postalNumber+students[student].city+students[student].phoneNumber);
-      var concatenatedProps = "";
-      for (var props in students[student]) {
-        concatenatedProps = concatenatedProps + students[student][props] + " ";
-
-      }
-      studArr.push(concatenatedProps);
+      studArr.push(students[student].firstName+students[student].lastName+students[student].address+students[student].postalNumber+students[student].city+students[student].phoneNumber);
+      //  var concatenatedProps = "";
+      // for (var props in students[student]) {
+      //   concatenatedProps = concatenatedProps + students[student][props] + " ";
+      // }
+      // studArr.push(concatenatedProps);
     }
+
+    /* FULLSTÄNDIG INFORMATION KNAPP POP-UP FUNKTIONALITET */
+
+    var allInfoLink = document.getElementsByClassName("all-info-link");
+    for(var a = 0;a<allInfoLink.length;a++)
+    {
+      allInfoLink[a].addEventListener("click",linkPopUp,false)
+    }
+    function linkPopUp()
+    {
+      for(var l=0;l<allInfoLink.length;l++)
+      {
+          if(allInfoLink[l] == this)
+          {
+            popUpIndex = l;
+            popUpAddress();
+          }
+      }
+    }
+
+
 
     for (var i = 0; i < studArr.length; i++) {
       studArr[i] = studArr[i].toLowerCase();
@@ -70,7 +91,6 @@ xmlhttp.onreadystatechange = function() {
     function findAddress() {
       var hits = "träffar";
       var hitIndex = [];
-
       var inputSmall = document.getElementsByClassName("input")[0].value;
       searchResContainer.innerHTML = "";
       var foundHits = 0;
@@ -93,9 +113,6 @@ xmlhttp.onreadystatechange = function() {
         searchResult.innerHTML += students[hitIndex[k]].postalNumber + "<br>";
         searchResult.innerHTML += students[hitIndex[k]].city + "<br>";
         searchResult.innerHTML += students[hitIndex[k]].phoneNumber + "<br>";
-        // searchResult.innerHTML += "<div class='hidden-info'>"+students[hitIndex[k]].favoriteMovie + "<br>";
-        // searchResult.innerHTML +=  students[hitIndex[k]].favoriteMovie + "<br></div>";
-
         foundHits++;
         searchResContainer.appendChild(searchResult);
       }
@@ -103,7 +120,11 @@ xmlhttp.onreadystatechange = function() {
       var searchResults = document.getElementsByClassName("search-result");
       var highlightStart = "<span class='highlight'>";
       var highlightEnd = "</span>";
+      //  /\<[^>]*\>/ig
+
       var regex = new RegExp(inputSmall, "g");
+  //    regex = /\<[^>]*\>/ig
+
       for (var h = 0; h < searchResults.length; h++) {
         if ((inputSmall != "br") && (inputSmall != "b") && (inputSmall != "r")) // Förhindra att br taggarna skivs ut.
         {
@@ -113,12 +134,21 @@ xmlhttp.onreadystatechange = function() {
         searchResults[h].addEventListener("mouseleave", removeHoverHighlight)
       }
 
-      function hoverHighlight() {
-        for (var p = 0; p < searchResults.length; p++) {
-          if (searchResults[p].innerHTML == this.innerHTML) {
-            highLightCounter = p;
+      function hoverHighlight()
+       {
+        for (var p = 0, l = searchResults.length; p < l; p++) {
+
+          if (searchResults[p].innerHTML == this.innerHTML)
+          {
             searchResults[p].className = "search-result search-result-active";
-            document.getElementsByClassName("search-result-active")[0].addEventListener("click", popUpAddress);
+            for(var index in students)
+            {
+              if(searchResults[p].innerHTML.includes(students[index].phoneNumber))
+              {
+                popUpIndex = index;
+              }
+            }
+          document.getElementsByClassName("search-result-active")[0].addEventListener("click", popUpAddress);
           }
         }
       }
@@ -131,30 +161,29 @@ xmlhttp.onreadystatechange = function() {
     }
     var allSearches = document.getElementsByClassName("search-result");
     // console.log(highLightCounter);
-    document.onkeydown = checkKey;
-
-    function checkKey(e) {
-      var numberOfHits = allSearches.length;
-      //console.log(numberOfHits+" Träffar!");
-
-      e = e || window.event;
-
-      if (e.keyCode == '38') {
-        if (highLightCounter >= -1) {
-          highLightCounter--;
-        }
-      } else if (e.keyCode == '40') {
-        if (highLightCounter < numberOfHits - 1) {
-          highLightCounter++;
-        }
-      } else if (e.keyCode == '13') //Enter
-      {
-        if (popUpContainer.style.display != "block") {
-          popUpAddress();
-        }
-      }
-      highLightSearch();
-    }
+    // document.onkeydown = checkKey;
+    //
+    // function checkKey(e) {
+    //   var numberOfHits = allSearches.length;
+    //   //console.log(numberOfHits+" Träffar!");
+    //   e = e || window.event;
+    //
+    //   if (e.keyCode == '38') {
+    //     if (highLightCounter >= -1) {
+    //       highLightCounter--;
+    //     }
+    //   } else if (e.keyCode == '40') {
+    //     if (highLightCounter < numberOfHits - 1) {
+    //       highLightCounter++;
+    //     }
+    //   } else if (e.keyCode == '13') //Enter
+    //   {
+    //     if (popUpContainer.style.display != "block") {
+    //       popUpAddress();
+    //     }
+    //   }
+    // //  highLightSearch();
+    // }
 
     function highLightSearch() {
       for (var n = 0; n < allSearches.length; n++) {
@@ -164,8 +193,6 @@ xmlhttp.onreadystatechange = function() {
     }
 
     function popUpAddress() {
-      for (var popUp = 0; popUp < allSearches.length; popUp++) {
-        if (allSearches[popUp].className == "search-result search-result-active") {
           var popUpAddressContainer = document.createElement("div");
           var popUpHeader = document.createElement("h4");
 
@@ -173,27 +200,21 @@ xmlhttp.onreadystatechange = function() {
 
           popUpAddressContainer.className = "pop-up-address-container";
         //  popUpAddressContainer.innerHTML = allSearches[popUp].innerHTML;
-
-          popUpAddressContainer.innerHTML = "<i class='icon flaticon-id17'></i>" + students[popUp].firstName + " ";
-          popUpAddressContainer.innerHTML += students[popUp].lastName + "<br> ";
-          popUpAddressContainer.innerHTML += "<i class='icon flaticon-pin71'></i>" + students[popUp].address + "<br> ";
-          popUpAddressContainer.innerHTML += "<i class='icon placeholder-icon flaticon-pin71'></i>" + students[popUp].postalNumber + "<br> ";
-          popUpAddressContainer.innerHTML += "<i class='icon placeholder-icon flaticon-pin71'></i>" + students[popUp].city + "<br> ";
-          //adressTextContainer.innerHTML += "Favoritfilm "+students[student].favoriteMovie+"<br> ";
-          popUpAddressContainer.innerHTML += "<i class='icon flaticon-iphone26'></i>" + students[popUp].phoneNumber + "<br> ";
-          popUpAddressContainer.innerHTML += "<i class='icon placeholder-icon flaticon-iphone26'></i>" +students[popUp].favoriteMovie+"<br>"; // Släng in alla hemligheter här!
-          popUpAddressContainer.innerHTML += "<i class='icon placeholder-icon flaticon-iphone26'></i>" +students[popUp].man; // Släng in alla hemligheter här
+          popUpAddressContainer.innerHTML = "<i class='icon flaticon-id17'></i>" + students[popUpIndex].firstName + " ";
+          popUpAddressContainer.innerHTML += students[popUpIndex].lastName + "<br> ";
+          popUpAddressContainer.innerHTML += "<i class='icon flaticon-pin71'></i>" + students[popUpIndex].address + "<br> ";
+          popUpAddressContainer.innerHTML += "<i class='icon placeholder-icon flaticon-pin71'></i>" + students[popUpIndex].postalNumber + "<br> ";
+          popUpAddressContainer.innerHTML += "<i class='icon placeholder-icon flaticon-pin71'></i>" + students[popUpIndex].city + "<br> ";
+          popUpAddressContainer.innerHTML += "<i class='icon flaticon-iphone26'></i>" + students[popUpIndex].phoneNumber + "<br> ";
+          popUpAddressContainer.innerHTML += "<i class='icon flaticon-email5'></i>" + students[popUpIndex].mail + "<br> ";
+          popUpAddressContainer.innerHTML += "<i class='icon placeholder-icon flaticon-iphone26'></i>" +students[popUpIndex].favoriteMovie+"<br>"; // Släng in alla hemligheter här!
+          popUpAddressContainer.innerHTML += "<i class='icon placeholder-icon flaticon-iphone26'></i>" +students[popUpIndex].quote; // Släng in alla hemligheter här
           popUpContainerInner.appendChild(popUpHeader);
           popUpContainerInner.appendChild(popUpAddressContainer);
-
-        //  setTimeout(popUpContainerInner.className = "pop-up-container-inner fade-in", 2800);
           setTimeout(function(){popUpContainerInner.style.opacity=1}, 20);
 
           popUpContainer.style.display = "block";
           setTimeout(function(){popUpContainer.style.opacity=1}, 20);
-
-        }
-      }
     }
     document.getElementsByClassName("close-pop-up")[0].addEventListener("click", function() {
       setTimeout(function(){popUpContainer.style.opacity=0}, 20);
@@ -202,10 +223,6 @@ xmlhttp.onreadystatechange = function() {
         popUpContainerInner.innerHTML = "";
 
       }, 200);
-
-    //  popUpContainer.style.display = "none";
-
-    //  popUpContainerInner.style.opacity=0;
     });
     document.getElementsByTagName("body")[0].addEventListener("click", function() {
       document.getElementsByTagName("input")[0].value = "";
