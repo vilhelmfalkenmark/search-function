@@ -3,38 +3,23 @@ $cardBackground: $offWhite;
 $addressContainerBackground: lighten($earthBeige,3%);
 $addressTextColor: $darkGrey;
 
-
-
 .adress-container
 {
   background-color: $addressContainerBackground;
   //color: $addressTextColor;
 }
-
-.girl {
-  .face-container {
-    // border: 1px solid $darkGrey;
-     box-shadow: -11px 13px 20px -14px rgba(0,0,0,0.75);
-
-  }
-}
-.boy {
-  .face-container {
-      //border: 1px solid $darkGrey;
-      box-shadow: -11px 13px 20px -14px rgba(0,0,0,0.75);
-
-  }
-}
-.boy,
-.girl {
+.card-container {
   background-color: $cardBackground;
   position: relative;
   color: $addressTextColor;
-  box-shadow: -11px 13px 20px -14px rgba(0,0,0,0.75);
+  box-shadow: $boxShadow;
+  .face-container {
+     box-shadow: $boxShadow;
+  }
 }
 .adress-container {
   .gtr-row {
-    background-color: $addressContainerBackground; //$offWhite;
+    background-color: $addressContainerBackground;
   }
 }
 $faceSize: 145px;
@@ -49,16 +34,12 @@ $faceSize: 145px;
   border-radius: 50%;
   background-color: white;
 }
-
 @include respond-to(not-desktop) {
   .adress-text-container {
     font-size: 14px;
     width: auto;
     margin: 0 auto;
     padding: 160px 20px 30px 30px;
-  }
-  .card-container {
-  //  @extend .flex-center;
   }
   .face-container {
     top: 10px;
@@ -72,7 +53,6 @@ $faceSize: 145px;
   }
 }
 @include respond-to(desktop) {
-
   .adress-text-container {
     font-size: 16px;
     padding: 160px 0 30px 10%;
@@ -91,8 +71,7 @@ $faceSize: 145px;
   line-height: 25px;
   font-size: 18px;
   margin: 30px 15px 0 0;
- color: darken(grey,10%);
-  //color: $addressTextColor;
+  color: darken(grey,10%);
 }
 .placeholder-icon {
   color: $cardBackground;
@@ -104,12 +83,9 @@ $faceSize: 145px;
   text-align: center;
   color: $offWhite;
   transition: all 0.3s ease;
-
   &:hover
   {
     background-color: lighten($darkGrey,20%);
-
-    //border: 1px solid $darkGrey;
   }
 }
 /* ARROW-HOLE! */
