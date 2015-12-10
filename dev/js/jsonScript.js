@@ -74,21 +74,31 @@ xmlhttp.onreadystatechange = function() {
     var searchStatus = document.getElementsByTagName("h3")[0];
     var input = document.getElementsByClassName("input")[0];
     input.addEventListener("input", findAddress);
+    input.addEventListener("input", animateOpacity);
+
+
+    function animateOpacity()
+    {
+      if(input.value.length>0)
+      {
+        overlay.style.display = "block";
+
+        setTimeout(function() {
+          overlay.style.opacity = 1;
+        }, 30);
+      }
+      else {
+        overlay.style.opacity = 0;
+        //overlay.style.display = "none";
+        setTimeout(function() {
+           overlay.style.display = "none";
+        }, 290);
+      }
+    }
 
     function findAddress() {
 
       highLightCounter = 0; // Räknaren som håller koll på vilken av sökresultaten som vi tabbar mellan.
-
-      if(input.value !="")
-      {
-        console.log("skrivet");
-        overlay.style.display = "block";
-      }
-      else {
-        overlay.style.display = "none";
-      }
-
-
       var hits = "träffar";
       var hitIndex = [];
       var inputSmall = document.getElementsByClassName("input")[0].value;
@@ -233,20 +243,29 @@ xmlhttp.onreadystatechange = function() {
       }, 20);
     }
     document.getElementsByClassName("close-pop-up")[0].addEventListener("click", function() {
+       overlay.style.display = "none";
       setTimeout(function() {
         popUpContainer.style.opacity = 0
       }, 20);
+
       setTimeout(function() {
         popUpContainer.style.display = "none";
         popUpContainerInner.innerHTML = "";
-      }, 200);
+      }, 400);
     });
-    document.getElementsByTagName("body")[0].addEventListener("click", function() {
-      overlay.style.display = "none";
-      document.getElementsByTagName("input")[0].value = "";
-      document.getElementsByClassName("search-result-container")[0].innerHTML = "";
-      searchStatus.innerHTML = "&nbsp;";
-    });
+document.getElementsByTagName("body")[0].addEventListener("click", clearBody);
+
+  function clearBody()
+  {
+    document.getElementsByTagName("input")[0].value = "";
+    overlay.style.opacity = 0;
+    //overlay.style.display = "none";
+     setTimeout(function() {
+       overlay.style.display = "none";
+  }, 100);
+    document.getElementsByClassName("search-result-container")[0].innerHTML = "";
+    searchStatus.innerHTML = "&nbsp;";
+  }
   }
 };
 xmlhttp.open("GET", url, true);

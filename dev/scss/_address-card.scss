@@ -1,6 +1,5 @@
 
 $cardBackground: $offWhite;
-//$cardBackground: $red;
 $addressContainerBackground: lighten($earthBeige,3%);
 $addressTextColor: $darkGrey;
 
@@ -104,7 +103,7 @@ $faceSize: 145px;
   background-color: $darkGrey;
   text-align: center;
   color: $offWhite;
-  transition: all 0.4s ease;
+  transition: all 0.3s ease;
 
   &:hover
   {

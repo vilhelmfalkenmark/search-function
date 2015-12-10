@@ -7,8 +7,11 @@
   z-index: 9999;
   background-color:$overlay;
   display: none;
-  transition: opacity 0.35s ease-in-out;
+  transition: opacity 0.4s ease-in-out;
   opacity: 0;
+
+
+
 
 
   .pop-up-face-container
@@ -19,11 +22,29 @@
     border-radius: 50%;
     position: absolute;
     background-size: cover;
+
+
+
   }
   .pop-up-container-inner
   {
     position: relative;
     background-color: $offWhite;
+    animation: sk-scaleout .4s  ease-in-out;
+
+  @keyframes sk-scaleout {
+  0% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    opacity: 0;
+
+  } 100% {
+    -webkit-transform: scale(1.0);
+    transform: scale(1.0);
+    opacity: 1;
+  }
+  }
+
   }
 
   .close-pop-up
