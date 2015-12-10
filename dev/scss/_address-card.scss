@@ -1,7 +1,7 @@
 
 $cardBackground: $offWhite;
 //$cardBackground: $red;
-$addressContainerBackground: white;
+$addressContainerBackground: lighten($earthBeige,3%);
 $addressTextColor: $darkGrey;
 
 
@@ -14,12 +14,16 @@ $addressTextColor: $darkGrey;
 
 .girl {
   .face-container {
-    //  border: 2px solid $red;
+    // border: 1px solid $darkGrey;
+     box-shadow: -11px 13px 20px -14px rgba(0,0,0,0.75);
+
   }
 }
 .boy {
   .face-container {
-    //  border: 2px solid $green;
+      //border: 1px solid $darkGrey;
+      box-shadow: -11px 13px 20px -14px rgba(0,0,0,0.75);
+
   }
 }
 .boy,
@@ -67,9 +71,6 @@ $faceSize: 145px;
   .all-info-link {
     margin: 20px 10px 0 0;
   }
-
-
-
 }
 @include respond-to(desktop) {
 
@@ -110,8 +111,30 @@ $faceSize: 145px;
     background-color: lighten($darkGrey,20%);
 
     //border: 1px solid $darkGrey;
-
+  }
+}
+/* ARROW-HOLE! */
+.arrow-hole {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    height: 20px;
+    background-color: $addressContainerBackground;
+}
+.arrow-hole:before {
+    right: 50%;
+    border-right: 20px solid transparent;
+  }
+  .arrow-hole:after {
+      left: 50%;
+      border-left: 20px solid transparent;
   }
 
-
-}
+  .arrow-hole:after, .arrow-hole:before {
+      border-bottom: 20px solid $addressContainerBackground;
+      content: '';
+      position: absolute;
+      bottom: 100%;
+      width: 50%;
+      box-sizing: border-box;
+    }

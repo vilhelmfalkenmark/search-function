@@ -5,7 +5,19 @@ body
   * {
     outline: none;
   }
+  position: relative;
 }
+
+.overlay
+{
+  position: absolute;
+  background-color: $overlay;
+  height: 100%;
+  width: 100%;
+  z-index: 100;
+  display: none;
+}
+
 h2
 {
   padding: 30px 0;
@@ -40,7 +52,7 @@ article
   margin: 0 auto;
   background-color: rgba(255,255,255,0.7);
   position: relative;
-
+  z-index:200;
   input
   {
     display: block;
@@ -77,13 +89,7 @@ article
 {
   font-size: 34px;
 }
-
-
 }
-
-
-
-
 }
 
 @media(min-width: 1px) and (max-width: $mobile-large-break)
@@ -94,7 +100,7 @@ article
   }
   .search-container
   {
-    width: 90%;
+    width: 98%;
     max-width: 560px;
 
     input
@@ -119,7 +125,8 @@ article
   {
     width: 50%;
     max-width: 560px;
-    padding: 10px 80px 30px 80px;
+    //padding: 10px 80px 30px 80px;
+    padding: 0 60px;
 
     input
     {
@@ -131,6 +138,7 @@ article
 .search-result-container
 {
 //  border: 1px solid $darkGrey;
+box-shadow: -11px 13px 20px -14px rgba(0,0,0,0.75);
 
   margin: 0 auto;
   z-index: 999;
@@ -142,9 +150,13 @@ article
  .search-result
   {
    background-color: $offWhite;
-   border-bottom: 1px dotted $darkGrey;
-   //margin: 10px 0;
-   padding: 30px 80px;
+   border-bottom: 1px solid $darkGrey;
+   padding: 29px 80px;
+
+   &:last-of-type
+   {
+     border-bottom: none;
+   }
 
    &:hover
    {
@@ -160,16 +172,16 @@ article
 h3
 {
   padding: 0;
+  margin: 15px;
 }
 
 
 .highlight
 {
   color: white;
-  background-color: $red;
+  background-color: lighten($green,5%);
+  font-size: 1.0rem;
 }
-
-
 .search-result
 {
   text-transform: capitalize;

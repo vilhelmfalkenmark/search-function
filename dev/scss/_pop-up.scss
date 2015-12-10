@@ -5,7 +5,7 @@
   width: 100%;
   height: 100%;
   z-index: 9999;
-  background-color: rgba(0,0,0,0.6);
+  background-color:$overlay;
   display: none;
   transition: opacity 0.35s ease-in-out;
   opacity: 0;
@@ -26,22 +26,45 @@
     background-color: $offWhite;
   }
 
+  .close-pop-up
+  {
+    background-color: $red;
+    color: $offWhite;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s ease;
+    &:hover
+    {
+      background-color: darken($red,10%);
+    }
+  }
+
 
 @include respond-to(phone-device) {
   .pop-up-face-container
   {
-    height: 140px;
-    width: 140px;
+    height: 130px;
+    width: 130px;
     top: -70px;
   }
 
   .pop-up-container-inner
   {
-    margin: 100px auto 0 auto; //
+    font-size: 14px;
+    margin: 30px auto 0 auto; //
     width: 80%;
     max-width: 500px;
-    padding: 80px 20px 30px 20px;
+    padding: 55px 20px 10px 20px;
   }
+
+  .close-pop-up
+  {
+    font-size: 14px;
+    width: 90px;
+    padding: 15px 15px;
+  }
+
+
 
 
 }
@@ -59,24 +82,16 @@
     max-width: 500px;
     padding: 100px 40px 80px 40px;
   }
+  .close-pop-up
+  {
+    width: 140px;
+    padding: 20px;
+  }
 }
 
 
 
-  .close-pop-up
-  {
-    background-color: $red;
-    color: $offWhite;
-    cursor: pointer;
-    width: 140px;
-    padding: 20px;
-    text-align: center;
-    transition: all 0.3s ease;
-    &:hover
-    {
-      background-color: darken($red,10%);
-    }
-  }
+
 
   .highlight
   {
