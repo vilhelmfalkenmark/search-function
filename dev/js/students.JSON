@@ -48,7 +48,7 @@
     "phoneNumber": "0708736381",
     "mail":"lasse.nilsson@mail.se",
     "favoriteMovie":"Strul",
-    "face":"dude1.jpg",
+    "face":"dude7.jpg",
     "quote": "Ennui hoodie letterpress. humblebrag you probably havent heard of them direct trade disrupt pour-over. Mumblecore schlitz ennui portland. Stumptown brooklyn franzen hoodie quinoa DIY. Poutine disrupt aesthetic taxidermy YOLO. Pitchfork paleo blog synth pabst, godard XOXO post-ironic chia bitters migas humblebrag master cleanse.",
     "man": true
   },
@@ -101,7 +101,7 @@
     "phoneNumber": "0458-666837",
     "mail":"km.andersson@mail.se",
     "favoriteMovie":"Blade",
-    "face":"dude4.jpg",
+    "face":"dude6.jpg",
     "quote": "Ennui hoodie letterpress. humblebrag you probably havent heard of them direct trade disrupt pour-over. Mumblecore schlitz ennui portland. Stumptown brooklyn franzen hoodie quinoa DIY. Poutine disrupt aesthetic taxidermy YOLO. Pitchfork paleo blog synth pabst, godard XOXO post-ironic chia bitters migas humblebrag master cleanse.",
     "man": true
   },
@@ -130,7 +130,6 @@
   "face":"dude2.jpg",
   "quote": "Ennui hoodie letterpress. humblebrag you probably havent heard of them direct trade disrupt pour-over. Mumblecore schlitz ennui portland. Stumptown brooklyn franzen hoodie quinoa DIY. Poutine disrupt aesthetic taxidermy YOLO. Pitchfork paleo blog synth pabst, godard XOXO post-ironic chia bitters migas humblebrag master cleanse.",
   "man": false
-
 },
   {
     "firstName": "Nina",
@@ -167,8 +166,47 @@
     "favoriteMovie":"Världarnas Krig",
     "phoneNumber": "0708-179638",
     "mail":"johanna.olsson@mail.se",
-    "face":"girl2.jpg",
+    "face":"girl4.jpg",
     "quote": "Ennui hoodie letterpress. humblebrag you probably havent heard of them direct trade disrupt pour-over. Mumblecore schlitz ennui portland. Stumptown brooklyn franzen hoodie quinoa DIY. Poutine disrupt aesthetic taxidermy YOLO. Pitchfork paleo blog synth pabst, godard XOXO post-ironic chia bitters migas humblebrag master cleanse.",
     "man": false
-  }
+  },
+  {
+  "firstName": "Mats",
+  "lastName": "Hansson",
+  "address": "Alvägen",
+  "postalNumber": "231 84",
+  "city": "Rissne Centrum",
+  "favoriteMovie":"Vägen",
+  "phoneNumber": "0767-312393",
+  "mail":"mats.hansson@mail.se",
+  "face":"dude9.jpg",
+  "quote": "Ennui hoodie letterpress. humblebrag you probably havent heard of them direct trade disrupt pour-over. Mumblecore schlitz ennui portland. Stumptown brooklyn franzen hoodie quinoa DIY. Poutine disrupt aesthetic taxidermy YOLO. Pitchfork paleo blog synth pabst, godard XOXO post-ironic chia bitters migas humblebrag master cleanse.",
+  "man": true
+},
+{
+"firstName": "Hampus",
+"lastName": "Norén",
+"address": "Isgatan 8B",
+"postalNumber": "983 12",
+"city": "Kiruna",
+"favoriteMovie":"Landet för länge sedan",
+"phoneNumber": "0985-322352",
+"mail":"hampus.noren@mail.se",
+"face":"dude7.jpg",
+"quote": "Ennui hoodie letterpress. humblebrag you probably havent heard of them direct trade disrupt pour-over. Mumblecore schlitz ennui portland. Stumptown brooklyn franzen hoodie quinoa DIY. Poutine disrupt aesthetic taxidermy YOLO. Pitchfork paleo blog synth pabst, godard XOXO post-ironic chia bitters migas humblebrag master cleanse.",
+"man": true
+},
+{
+"firstName": "Andreas",
+"lastName": "Persson",
+"address": "Bankirgatan 100",
+"postalNumber": "145 87",
+"city": "Hägersten",
+"favoriteMovie":"Motorsågsmassakern",
+"phoneNumber": "0708-119863",
+"mail":"andreas.persson@mail.se",
+"face":"dude8.jpg",
+"quote": "Ennui hoodie letterpress. humblebrag you probably havent heard of them direct trade disrupt pour-over. Mumblecore schlitz ennui portland. Stumptown brooklyn franzen hoodie quinoa DIY. Poutine disrupt aesthetic taxidermy YOLO. Pitchfork paleo blog synth pabst, godard XOXO post-ironic chia bitters migas humblebrag master cleanse.",
+"man": true
+}
 ]
