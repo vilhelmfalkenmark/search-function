@@ -13,7 +13,7 @@ var del = require('del');
 var runSequence = require('run-sequence');
 var sassdoc = require('sassdoc');
 
-// Development Tasks 
+// Development Tasks
 // -----------------
 
 // ... variables
@@ -27,32 +27,33 @@ gulp.task('browserSync', function() {
         server: {
             baseDir: 'dev'
         }
-    })
+    });
 });
 
 gulp.task('sass', function() {
     return gulp.src('dev/scss/**/*.scss')
         .pipe(sourcemaps.init())
         .pipe(sass())
+        .on("error", sass.logError)
         .pipe(autoprefixer(autoprefixerOptions))
         .pipe(sourcemaps.write())
         .pipe(gulp.dest('dev/css'))
         .pipe(browserSync.reload({
             stream: true
         }));
-})
+});
 
 // Watchers
 gulp.task('watch', function() {
     gulp.watch('dev/scss/**/*.scss', ['sass']);
     gulp.watch('dev/*.html', browserSync.reload);
     gulp.watch('dev/js/**/*.js', browserSync.reload);
-})
+});
 
-// Optimization Tasks 
+// Optimization Tasks
 // ------------------
 
-// Optimizing CSS and JavaScript 
+// Optimizing CSS and JavaScript
 gulp.task('useref', function() {
     var assets = useref.assets();
 
@@ -64,33 +65,33 @@ gulp.task('useref', function() {
         .pipe(gulpIf('*.js', uglify()))
         .pipe(assets.restore())
         .pipe(useref())
-        .pipe(gulp.dest('dist'))
+        .pipe(gulp.dest('dist'));
 });
 
-// Optimizing Images 
+// Optimizing Images
 gulp.task('images', function() {
     return gulp.src('dev/images/**/*.+(png|jpg|jpeg|gif|svg)')
         // Caching images that ran through imagemin
         .pipe(cache(imagemin({
             interlaced: true,
         })))
-        .pipe(gulp.dest('dist/images'))
+        .pipe(gulp.dest('dist/images'));
 });
 
-// Copying fonts 
+// Copying fonts
 gulp.task('fonts', function() {
     return gulp.src('dev/fonts/**/*')
-        .pipe(gulp.dest('dist/fonts'))
+        .pipe(gulp.dest('dist/fonts'));
 });
 
-// Cleaning 
+// Cleaning
 gulp.task('clean', function(callback) {
     del('dist');
     return cache.clearAll(callback);
 });
 
 gulp.task('clean:dist', function(callback) {
-    del(['dist/**/*', '!dist/images', '!dist/images/**/*'], callback)
+    del(['dist/**/*', '!dist/images', '!dist/images/**/*'], callback);
 });
 
 // Build Sequences
@@ -99,12 +100,11 @@ gulp.task('clean:dist', function(callback) {
 gulp.task('default', function(callback) {
     runSequence(['sass', 'browserSync', 'watch'],
         callback
-    )
+    );
 });
 
 gulp.task('build', function(callback) {
-    runSequence('clean:dist',
-        ['sass', 'useref', 'images', 'fonts'],
+    runSequence(['sass', 'useref', 'images', 'fonts'],
         callback
-    )
+    );
 });

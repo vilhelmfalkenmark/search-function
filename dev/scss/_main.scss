@@ -7,7 +7,6 @@ body
   }
   position: relative;
 }
-
 .overlay
 {
   position: absolute;
@@ -30,10 +29,7 @@ body
           opacity: 1;
       }
   }
-
-
 }
-
 h2
 {
   padding: 30px 0;
@@ -55,10 +51,14 @@ article
 }
 .background-container
 {
+  vertical-align: top;
   width: 100%;
-  background: url(../images/bear.jpg) center center no-repeat fixed;
- //background-color: $green;
-  background-size: cover;
+  background: url(../images/officeBackground.jpg) center center no-repeat;
+  background-attachment: fixed;
+  position: relative;
+//  background-size: 100% auto;
+  //padding:   10% 0;
+ background-size: cover;
   @extend .flex-center
 }
 
@@ -135,7 +135,6 @@ article
   {
     height: 550px;
   }
-
   .search-container
   {
     width: 50%;
